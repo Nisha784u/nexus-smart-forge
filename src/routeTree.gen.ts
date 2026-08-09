@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppBoardRouteImport } from './routes/app.board'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppProjectsIndexRouteImport } from './routes/app.projects.index'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/app.projects.$projectId'
@@ -44,6 +45,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppBoardRoute = AppBoardRouteImport.update({
+  id: '/board',
+  path: '/board',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/signup': typeof SignupRoute
+  '/app/board': typeof AppBoardRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/signup': typeof SignupRoute
+  '/app/board': typeof AppBoardRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/signup': typeof SignupRoute
+  '/app/board': typeof AppBoardRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/forgot-password'
     | '/signup'
+    | '/app/board'
     | '/app/dashboard'
     | '/app/'
     | '/app/projects/$projectId'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
     | '/'
     | '/forgot-password'
     | '/signup'
+    | '/app/board'
     | '/app/dashboard'
     | '/app'
     | '/app/projects/$projectId'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/forgot-password'
     | '/signup'
+    | '/app/board'
     | '/app/dashboard'
     | '/app/'
     | '/app/projects/$projectId'
@@ -177,6 +189,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/board': {
+      id: '/app/board'
+      path: '/board'
+      fullPath: '/app/board'
+      preLoaderRoute: typeof AppBoardRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/dashboard': {
       id: '/app/dashboard'
       path: '/dashboard'
@@ -209,6 +228,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppBoardRoute: typeof AppBoardRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppIndexRoute: typeof AppIndexRoute
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
@@ -217,6 +237,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppBoardRoute: AppBoardRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppIndexRoute: AppIndexRoute,
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
