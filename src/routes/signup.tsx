@@ -29,9 +29,9 @@ function SignupPage() {
           </>
         }
       >
-        <Field label="Full name" placeholder="John Doe" />
-        <Field label="Work email" type="email" placeholder="john@company.com" />
-        <Field label="Password" type="password" placeholder="At least 8 characters" />
+        <Field label="Full name" placeholder="Nisha Rao" autoComplete="name" />
+        <Field label="Work email" type="email" placeholder="nisha@company.com" autoComplete="email" />
+        <Field label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" />
         <PrimaryButton to="/app/dashboard">Create account</PrimaryButton>
         <p className="text-[11px] leading-relaxed text-muted-foreground">
           By continuing you agree to the NexusFlow Terms of Service and Privacy Policy.

@@ -140,7 +140,9 @@ export function AuthPanel({
         </div>
         <h2 className="font-display text-2xl font-semibold tracking-tight">{title}</h2>
         <p className="mt-1.5 text-sm text-muted-foreground">{subtitle}</p>
-        <div className="mt-7 space-y-4">{children}</div>
+        <form className="mt-7 space-y-4" onSubmit={(event) => event.preventDefault()}>
+          {children}
+        </form>
         {footer && <div className="mt-7 text-center text-sm text-muted-foreground">{footer}</div>}
       </motion.div>
     </div>
@@ -151,10 +153,12 @@ export function Field({
   label,
   type = "text",
   placeholder,
+  autoComplete,
 }: {
   label: string;
   type?: string;
   placeholder: string;
+  autoComplete?: string;
 }) {
   return (
     <label className="block">
@@ -162,6 +166,7 @@ export function Field({
       <input
         type={type}
         placeholder={placeholder}
+        autoComplete={autoComplete}
         className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm outline-none transition-all placeholder:text-muted-foreground/70 focus:border-[oklch(0.6_0.2_272_/_0.6)] focus:shadow-[0_0_0_3px_oklch(0.6_0.2_272_/_0.15)]"
       />
     </label>

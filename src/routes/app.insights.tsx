@@ -57,7 +57,7 @@ const radar = [
 
 const risks = [
   { title: "Website Redesign may slip 6 days", level: "High", why: "Design QA queue grew 3× in two weeks." },
-  { title: "Payment Gateway is single-owner", level: "Medium", why: "Alex owns 4 of 5 critical-path tasks." },
+  { title: "Payment Gateway is single-owner", level: "Medium", why: "Rohan owns 4 of 5 critical-path tasks." },
   { title: "Review column ageing", level: "Medium", why: "2 cards idle for 4+ days." },
 ];
 

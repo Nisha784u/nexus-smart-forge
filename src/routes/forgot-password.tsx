@@ -26,7 +26,7 @@ function ForgotPage() {
           </Link>
         }
       >
-        <Field label="Email address" type="email" placeholder="john@company.com" />
+        <Field label="Email address" type="email" placeholder="nisha@company.com" autoComplete="email" />
         <PrimaryButton to="/">Send reset link</PrimaryButton>
       </AuthPanel>
     </div>

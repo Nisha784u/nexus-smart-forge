@@ -30,7 +30,7 @@ const prompts = [
 const replies: string[] = [
   "Mobile App is 72% complete. The critical path runs through Payment Gateway (urgent, due May 20) and Offline sync engine. Billing edge cases in review has been idle 4 days — that's your real blocker.",
   "This week: 38 tasks completed vs 30 created, velocity up 13%. Nexus AI Dashboard hit 90%. Website Redesign slipped to at-risk — design QA is the bottleneck.",
-  "Sarah is at 94% capacity and Alex at 84%. Mike has room at 51%. Moving 2 design QA tasks to Mike would cut Website Redesign risk by roughly 18%.",
+  "Priya is at 94% capacity and Rohan at 84%. Arjun has room at 51%. Moving 2 design QA tasks to Arjun would cut Website Redesign risk by roughly 18%.",
   "Suggested sprint: close Payment Gateway and Billing edge cases first, ship Design System tokens, then start Push notifications. That's 34 points — in line with your 6-week average.",
 ];
 

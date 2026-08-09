@@ -208,7 +208,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <span className="flex size-6 items-center justify-center rounded-md bg-[var(--gradient-ai)] text-[10px] font-bold text-background">
                 JD
               </span>
-              <span className="hidden text-xs font-medium sm:block">John Doe</span>
+              <span className="hidden text-xs font-medium sm:block">Nisha Rao</span>
             </Link>
           </div>
         </header>

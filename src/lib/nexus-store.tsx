@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { initialTasks, notifications as seedNotifications, type Notification, type Status, type Task } from "./nexus-data";
 
 type Ctx = {
@@ -20,6 +20,30 @@ export function NexusProvider({ children }: { children: ReactNode }) {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
   const [notifications, setNotifications] = useState<Notification[]>(seedNotifications);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    try {
+      const savedTasks = window.localStorage.getItem("nexusflow.tasks");
+      const savedNotifications = window.localStorage.getItem("nexusflow.notifications");
+      if (savedTasks) setTasks(JSON.parse(savedTasks) as Task[]);
+      if (savedNotifications) setNotifications(JSON.parse(savedNotifications) as Notification[]);
+    } catch {
+      // Invalid or unavailable browser storage should not prevent the workspace from loading.
+    } finally {
+      setHydrated(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    try {
+      window.localStorage.setItem("nexusflow.tasks", JSON.stringify(tasks));
+      window.localStorage.setItem("nexusflow.notifications", JSON.stringify(notifications));
+    } catch {
+      // Storage can be disabled or full; the in-memory workspace remains usable.
+    }
+  }, [hydrated, tasks, notifications]);
 
   const setTaskStatus = useCallback((id: string, status: Status) => {
     setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, status } : t)));

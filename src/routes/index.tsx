@@ -37,8 +37,8 @@ function LoginPage() {
           </>
         }
       >
-        <Field label="Email address" type="email" placeholder="john@company.com" />
-        <Field label="Password" type="password" placeholder="••••••••" />
+        <Field label="Email address" type="email" placeholder="nisha@company.com" autoComplete="email" />
+        <Field label="Password" type="password" placeholder="••••••••" autoComplete="current-password" />
         <div className="flex items-center justify-between text-xs">
           <label className="flex cursor-pointer items-center gap-2 text-muted-foreground">
             <input type="checkbox" className="size-3.5 accent-[oklch(0.6_0.2_272)]" defaultChecked />

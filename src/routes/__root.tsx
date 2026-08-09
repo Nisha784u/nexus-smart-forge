@@ -77,14 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "NexusFlow — AI-powered project management" },
+      { name: "description", content: "Plan smarter and build faster with AI-powered project management." },
+      { name: "author", content: "NexusFlow" },
+      { property: "og:title", content: "NexusFlow — AI-powered project management" },
+      { property: "og:description", content: "Plan smarter and build faster with AI-powered project management." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

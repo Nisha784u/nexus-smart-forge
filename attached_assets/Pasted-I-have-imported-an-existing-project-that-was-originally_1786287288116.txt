@@ -1,0 +1,614 @@
+I have imported an existing project that was originally created using Lovable. I want you to fully audit, clean, complete, and productionize this existing project.
+
+IMPORTANT: Do NOT rebuild the application from scratch. First understand the existing codebase, UI, functionality, routes, components, data flow, dependencies, and project structure. Then make the required changes while preserving the existing application.
+
+## 1. FULL PROJECT AUDIT
+
+Before making changes:
+
+* Inspect the complete repository.
+* Understand the current frontend architecture.
+* Identify the framework, libraries, routes, components, services, and utilities.
+* Identify whether a backend already exists.
+* Identify all mock/static/demo data.
+* Identify authentication and database-related code.
+* Identify unused, duplicate, temporary, placeholder, or obsolete files.
+* Identify Lovable-specific/demo artifacts that are no longer necessary.
+* Identify any existing errors or broken functionality.
+
+Do not make major changes blindly.
+
+After understanding the project, implement the changes systematically.
+
+---
+
+# 2. MAIN USER NAME — JOHN → NISHA
+
+This is important.
+
+Wherever **John** represents the main/demo user, replace it specifically with:
+
+**Nisha**
+
+Make sure the main user/profile consistently appears as Nisha throughout the application.
+
+Also search the entire project for other obvious fictional/demo English names such as:
+
+* Jane
+* Michael
+* David
+* Sarah
+* Emily
+* Alex
+* Robert
+* William
+* James
+* Daniel
+
+Replace appropriate user-facing demo names with realistic Indian names.
+
+Use varied Indian first and last names instead of repeating the same names.
+
+IMPORTANT:
+
+* Do not blindly replace names inside technical code.
+* Do not change package names, variables, API keys, URLs, environment variables, or technical identifiers unless they are clearly user-facing demo content.
+* Check dashboards, profiles, tables, cards, testimonials, activity feeds, notifications, transactions, comments, sample users, and other visible content.
+
+---
+
+# 3. APPLICATION BRANDING
+
+Find the current application/project name and make the branding consistent.
+
+Update the appropriate user-facing locations:
+
+* Navbar
+* Sidebar
+* Dashboard
+* Login/signup pages
+* Page titles
+* Browser title
+* Footer
+* Empty states
+* Notifications
+* Profile
+* README
+* Any other visible branding
+
+Do not rename technical files or variables unnecessarily.
+
+---
+
+# 4. PRESERVE AND IMPROVE THE EXISTING UI/DESIGN
+
+The existing Lovable UI is important.
+
+DO NOT completely redesign it.
+
+Preserve:
+
+* Existing layout
+* Existing navigation
+* Existing pages
+* Existing components
+* Existing functionality
+* Existing visual identity
+* Existing color system
+* Existing interaction patterns
+
+However, improve obvious issues such as:
+
+* spacing
+* alignment
+* typography
+* responsiveness
+* inconsistent components
+* broken buttons
+* broken forms
+* poor mobile layout
+* awkward empty states
+* inconsistent cards/tables
+* accessibility issues
+* obvious visual bugs
+
+The final design should feel:
+
+* modern
+* clean
+* professional
+* consistent
+* responsive
+* production-ready
+
+Make sure it works properly on:
+
+* desktop
+* tablet
+* mobile
+
+Do NOT add unnecessary animations or visual effects just to make it look fancy.
+
+---
+
+# 5. REMOVE MOCK/DEMO DATA WHERE REAL DATA IS REQUIRED
+
+Audit the entire application for:
+
+* hardcoded arrays
+* fake API responses
+* placeholder records
+* mock users
+* fake transactions
+* demo dashboards
+* static statistics
+* fake activity feeds
+* fake notifications
+* temporary local data
+* simulated API delays
+
+Determine which data should actually be persistent.
+
+Replace appropriate mock functionality with real backend/database functionality.
+
+The application must not merely LOOK functional.
+
+Important operations should actually work and persist data after refresh.
+
+---
+
+# 6. BUILD A REAL BACKEND
+
+If the existing backend is incomplete or missing, create a proper backend based on the application's actual requirements.
+
+Prefer a clean architecture using:
+
+* Node.js
+* Express.js
+* REST APIs
+* MongoDB or PostgreSQL, depending on what best fits the existing project
+
+Do not add unnecessary technologies.
+
+Create a maintainable structure such as:
+
+* routes
+* controllers
+* services
+* models
+* middleware
+* validation
+* error handling
+* configuration
+
+Use environment variables for configuration and secrets.
+
+Implement proper:
+
+* request validation
+* error handling
+* API responses
+* authentication middleware
+* authorization where required
+* database error handling
+
+---
+
+# 7. DATABASE
+
+Set up a real database based on the application's actual data model.
+
+Choose the most appropriate database between MongoDB and PostgreSQL after inspecting the project.
+
+Create proper models/schemas for the application's entities.
+
+Include where appropriate:
+
+* IDs
+* relationships
+* timestamps
+* validation
+* defaults
+* indexes
+
+Make sure data persists correctly.
+
+Create:
+
+`.env.example`
+
+with placeholders only.
+
+NEVER commit real passwords, database credentials, API keys, or secrets.
+
+---
+
+# 8. REAL CRUD FUNCTIONALITY
+
+For appropriate entities implement:
+
+* Create
+* Read
+* Update
+* Delete
+
+Connect the frontend to the actual backend APIs.
+
+After creating/updating/deleting data:
+
+* UI should update correctly
+* data should persist after refresh
+* loading states should work
+* empty states should work
+* error states should work
+
+Do not use fake local data when the feature requires database persistence.
+
+---
+
+# 9. AUTHENTICATION
+
+If the application requires user accounts, implement proper authentication.
+
+Use secure authentication with:
+
+* signup
+* login
+* logout
+* password hashing
+* protected routes
+* authentication middleware
+* secure token/session handling
+* appropriate authorization
+
+If authentication already exists, inspect it and improve/fix it instead of unnecessarily replacing it.
+
+Never hardcode passwords or secrets.
+
+The main demo/user profile should use **Nisha** where appropriate.
+
+---
+
+# 10. FRONTEND ↔ BACKEND INTEGRATION
+
+Connect all relevant frontend functionality to the real backend.
+
+Replace unnecessary fake/mock API calls.
+
+Handle:
+
+* loading
+* success
+* validation errors
+* authentication errors
+* authorization errors
+* server errors
+* network errors
+* empty states
+
+Use environment variables for backend/API URLs.
+
+Do not hardcode sensitive information.
+
+---
+
+# 11. CLEAN UNUSED AND EXTRA FILES
+
+Audit the entire repository carefully.
+
+Remove only files that are confirmed to be unnecessary, such as:
+
+* unused components
+* unused pages
+* duplicate components
+* obsolete demo files
+* unused assets
+* temporary files
+* placeholder files
+* unused utilities
+* obsolete configuration
+* unnecessary sample data
+* leftover Lovable/demo artifacts
+
+IMPORTANT:
+
+Do NOT blindly delete files.
+
+Before deleting a file, check whether it is:
+
+* imported
+* referenced
+* required by the build
+* required by routing
+* required by configuration
+* required at runtime
+
+After cleanup, verify that no deleted file is still referenced.
+
+Also:
+
+* remove unused imports
+* remove dead code
+* remove unnecessary console.log statements
+* remove unused dependencies where safe
+* clean package.json if appropriate
+* keep the project structure logical
+
+The goal is a clean repository, not an artificially small repository.
+
+---
+
+# 12. MAKE IT LOOK LIKE A REAL MAINTAINED PROJECT
+
+The final codebase should feel like a genuine developer-built application.
+
+Avoid:
+
+* obvious placeholder text
+* generic demo wording
+* unnecessary AI-generated comments
+* excessive comments explaining obvious code
+* duplicate components
+* fake complexity
+* unnecessary abstractions
+* unused files
+* unused dependencies
+* random demo content
+
+Keep:
+
+* meaningful names
+* clean architecture
+* reusable components
+* understandable code
+* useful comments only where necessary
+* consistent formatting
+
+Do not add fake content merely to make the project appear more complete.
+
+---
+
+# 13. README.md — COMPLETELY UPDATE IT
+
+Rewrite the README based on the FINAL actual implementation.
+
+Do not use generic AI-generated filler.
+
+Include:
+
+## Project Name
+
+Use the final application name.
+
+## Overview
+
+Clearly explain:
+
+* what the application does
+* what problem it solves
+* who it is for
+
+## Features
+
+List the actual implemented features.
+
+## Tech Stack
+
+Mention the actual technologies used:
+
+* Frontend
+* Backend
+* Database
+* Authentication
+* APIs
+* Important libraries/services
+
+## Project Structure
+
+Explain important folders and their purpose.
+
+## Installation
+
+Provide exact installation steps.
+
+## Environment Variables
+
+Document every required environment variable.
+
+Use placeholders only.
+
+Never expose real secrets.
+
+## Database Setup
+
+Explain how to configure the database.
+
+## Running Locally
+
+Give exact commands for:
+
+* frontend
+* backend
+* database-related setup if required
+
+## API Documentation
+
+Document important API endpoints including:
+
+* method
+* endpoint
+* purpose
+* authentication requirement
+
+## Authentication
+
+Explain authentication at a high level.
+
+## Deployment
+
+Explain how to deploy the final frontend and backend.
+
+## Future Improvements
+
+Add realistic future improvements based on the actual project.
+
+---
+
+# 14. SECURITY AUDIT
+
+Check the entire project for:
+
+* exposed API keys
+* database credentials
+* passwords
+* tokens
+* secrets
+* insecure authentication
+* unsafe input handling
+* missing validation
+* accidental secret files
+
+If any secret is found:
+
+DO NOT expose or repeat the secret.
+
+Move it to an environment variable and update `.env.example`.
+
+Make sure `.gitignore` prevents sensitive files from being committed.
+
+---
+
+# 15. ERROR HANDLING
+
+Implement proper error handling across frontend and backend.
+
+Frontend should show useful messages instead of silently failing.
+
+Backend should return appropriate HTTP status codes and structured error responses.
+
+Avoid exposing internal server/database details to users.
+
+---
+
+# 16. RESPONSIVENESS AND ACCESSIBILITY
+
+Check the entire UI on:
+
+* desktop
+* tablet
+* mobile
+
+Fix:
+
+* overflow
+* broken grids
+* unreadable text
+* buttons going outside containers
+* navigation problems
+* forms on small screens
+* tables on mobile
+
+Also improve basic accessibility:
+
+* labels for inputs
+* keyboard accessibility
+* appropriate button/link semantics
+* readable contrast
+* meaningful page titles
+* useful alt text where needed
+
+---
+
+# 17. TEST EVERYTHING
+
+After implementing the changes:
+
+1. Install dependencies.
+2. Run the frontend.
+3. Run the backend.
+4. Run the production build.
+5. Check for TypeScript/JavaScript errors.
+6. Check lint errors if configured.
+7. Test important routes.
+8. Test navigation.
+9. Test forms.
+10. Test authentication.
+11. Test CRUD operations.
+12. Test database persistence.
+13. Test refresh behavior.
+14. Test mobile responsiveness.
+15. Fix all errors you encounter.
+
+Do not stop after merely editing files.
+
+The final application must actually run.
+
+---
+
+# 18. GITHUB / VERSION CONTROL
+
+Keep the repository clean and GitHub-ready.
+
+Make sure:
+
+* `.gitignore` is correct
+* `.env` is not committed
+* secrets are not committed
+* unnecessary generated files are not committed
+* README is updated
+* package dependencies are correct
+
+If your environment allows commits, make a clear commit after completing the work.
+
+---
+
+# 19. IMPORTANT — DO NOT BREAK EXISTING FUNCTIONALITY
+
+Follow these rules throughout the implementation:
+
+* Do NOT rebuild from scratch.
+* Do NOT delete the existing application.
+* Do NOT unnecessarily change the existing UI.
+* Do NOT remove working features.
+* Do NOT replace working code without a reason.
+* Do NOT use fake backend implementations.
+* Do NOT leave important functionality dependent on mock data.
+* Do NOT hardcode secrets.
+* Do NOT blindly delete files.
+* Do NOT add unnecessary technologies.
+* Do NOT introduce unnecessary complexity.
+
+If something already works correctly, preserve it.
+
+Use the least disruptive solution that achieves the requirement.
+
+---
+
+# 20. FINAL VERIFICATION REPORT
+
+When everything is complete, provide a concise final report containing:
+
+1. Project overview
+2. Existing features preserved
+3. New features implemented
+4. John → Nisha changes
+5. Other demo names replaced
+6. UI/design improvements
+7. Files/components cleaned or removed
+8. Backend architecture
+9. Database technology and models
+10. Authentication implementation
+11. API endpoints
+12. Mock data replaced
+13. README changes
+14. Security improvements
+15. Environment variables required
+16. Commands to run the application
+17. Deployment instructions
+18. Any remaining issues or manual steps
+
+FIRST audit the repository and understand the existing application.
+
+THEN implement everything systematically.
+
+Do not simply tell me what should be done. Actually make the changes in the codebase and verify that the final application works.

@@ -30,12 +30,12 @@ export const Route = createFileRoute("/app/generator")({
 type Generated = { id: string; title: string; priority: Priority; estimate: string; owner: string };
 
 const generated: Generated[] = [
-  { id: "g1", title: "Define checkout API contract", priority: "high", estimate: "5 pts", owner: "Alex Chen" },
-  { id: "g2", title: "Build payment form UI states", priority: "medium", estimate: "3 pts", owner: "Sarah Johnson" },
-  { id: "g3", title: "Implement webhook verification", priority: "urgent", estimate: "8 pts", owner: "Alex Chen" },
-  { id: "g4", title: "Add retry & backoff handling", priority: "high", estimate: "5 pts", owner: "Mike Brown" },
-  { id: "g5", title: "Write reconciliation test suite", priority: "medium", estimate: "5 pts", owner: "Emma Wilson" },
-  { id: "g6", title: "Document rollout & rollback plan", priority: "low", estimate: "2 pts", owner: "John Doe" },
+  { id: "g1", title: "Define checkout API contract", priority: "high", estimate: "5 pts", owner: "Rohan Shah" },
+  { id: "g2", title: "Build payment form UI states", priority: "medium", estimate: "3 pts", owner: "Priya Menon" },
+  { id: "g3", title: "Implement webhook verification", priority: "urgent", estimate: "8 pts", owner: "Rohan Shah" },
+  { id: "g4", title: "Add retry & backoff handling", priority: "high", estimate: "5 pts", owner: "Arjun Mehta" },
+  { id: "g5", title: "Write reconciliation test suite", priority: "medium", estimate: "5 pts", owner: "Kavya Iyer" },
+  { id: "g6", title: "Document rollout & rollback plan", priority: "low", estimate: "2 pts", owner: "Nisha Rao" },
 ];
 
 const templates = ["Product launch", "Sprint plan", "Bug triage", "Design handoff", "Migration"];
