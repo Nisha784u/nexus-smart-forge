@@ -18,7 +18,7 @@ import { projects, statusOrder, statusLabels, type Priority, type Status } from 
 import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/app/tasks")({
+export const Route = createFileRoute("/app/tasks/")({
   head: () => ({
     meta: [
       { title: "My Tasks — NexusFlow" },
