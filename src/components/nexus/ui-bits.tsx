@@ -169,7 +169,7 @@ export function ProgressBar({ value, className }: { value: number; className?: s
   );
 }
 
-export function AIActions({ actions, onAction }: { actions: string[]; onAction?: (a: string) => void }) {
+export function AIActions({ actions, onAction }: { actions: string[]; onAction?: ((a: string) => void) | undefined }) {
   return (
     <div className="flex flex-wrap gap-2">
       {actions.map((a) => (
@@ -197,7 +197,7 @@ export function AIInsightCard({
   title?: string;
   body: ReactNode;
   actions?: string[];
-  onAction?: (a: string) => void;
+  onAction?: ((a: string) => void) | undefined;
   className?: string;
 }) {
   return (

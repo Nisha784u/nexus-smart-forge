@@ -176,7 +176,7 @@ export const statusLabels: Record<Status, string> = {
 export const statusOrder: Status[] = ["backlog", "todo", "in-progress", "review", "done"];
 
 export function memberById(id: string) {
-  return members.find((m) => m.id === id) ?? members[0];
+  return (members.find((m) => m.id === id) ?? members[0]) as Member;
 }
 export function projectById(id: string) {
   return projects.find((p) => p.id === id);
