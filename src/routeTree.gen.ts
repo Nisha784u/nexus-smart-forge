@@ -21,6 +21,7 @@ import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppGeneratorRouteImport } from './routes/app.generator'
 import { Route as AppInsightsRouteImport } from './routes/app.insights'
 import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppTeamRouteImport } from './routes/app.team'
 import { Route as AppProjectsIndexRouteImport } from './routes/app.projects.index'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/app.projects.$projectId'
@@ -87,6 +88,11 @@ const AppNotificationsRoute = AppNotificationsRouteImport.update({
   path: '/notifications',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppTeamRoute = AppTeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/app/generator': typeof AppGeneratorRoute
   '/app/insights': typeof AppInsightsRoute
   '/app/notifications': typeof AppNotificationsRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/team': typeof AppTeamRoute
   '/app/': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/app/generator': typeof AppGeneratorRoute
   '/app/insights': typeof AppInsightsRoute
   '/app/notifications': typeof AppNotificationsRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/team': typeof AppTeamRoute
   '/app': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
@@ -163,6 +171,7 @@ export interface FileRoutesById {
   '/app/generator': typeof AppGeneratorRoute
   '/app/insights': typeof AppInsightsRoute
   '/app/notifications': typeof AppNotificationsRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/team': typeof AppTeamRoute
   '/app/': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
@@ -184,6 +193,7 @@ export interface FileRouteTypes {
     | '/app/generator'
     | '/app/insights'
     | '/app/notifications'
+    | '/app/settings'
     | '/app/team'
     | '/app/'
     | '/app/projects/$projectId'
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/app/generator'
     | '/app/insights'
     | '/app/notifications'
+    | '/app/settings'
     | '/app/team'
     | '/app'
     | '/app/projects/$projectId'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/app/generator'
     | '/app/insights'
     | '/app/notifications'
+    | '/app/settings'
     | '/app/team'
     | '/app/'
     | '/app/projects/$projectId'
@@ -322,6 +334,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppNotificationsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/team': {
       id: '/app/team'
       path: '/team'
@@ -368,6 +387,7 @@ interface AppRouteChildren {
   AppGeneratorRoute: typeof AppGeneratorRoute
   AppInsightsRoute: typeof AppInsightsRoute
   AppNotificationsRoute: typeof AppNotificationsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppTeamRoute: typeof AppTeamRoute
   AppIndexRoute: typeof AppIndexRoute
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
@@ -384,6 +404,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppGeneratorRoute: AppGeneratorRoute,
   AppInsightsRoute: AppInsightsRoute,
   AppNotificationsRoute: AppNotificationsRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppTeamRoute: AppTeamRoute,
   AppIndexRoute: AppIndexRoute,
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
