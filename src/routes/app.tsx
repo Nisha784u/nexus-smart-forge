@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { AppShell } from "@/components/nexus/app-shell";
 import { NexusProvider } from "@/lib/nexus-store";
 
@@ -15,5 +15,3 @@ function AppLayout() {
     </NexusProvider>
   );
 }
-
-export const _unused = redirect;
