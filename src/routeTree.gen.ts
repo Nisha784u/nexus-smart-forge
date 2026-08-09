@@ -17,6 +17,7 @@ import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppBoardRouteImport } from './routes/app.board'
 import { Route as AppCalendarRouteImport } from './routes/app.calendar'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
+import { Route as AppTeamRouteImport } from './routes/app.team'
 import { Route as AppProjectsIndexRouteImport } from './routes/app.projects.index'
 import { Route as AppProjectsProjectIdRouteImport } from './routes/app.projects.$projectId'
 import { Route as AppTasksIndexRouteImport } from './routes/app.tasks.index'
@@ -62,6 +63,11 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTeamRoute = AppTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/app/board': typeof AppBoardRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/team': typeof AppTeamRoute
   '/app/': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/app/tasks/$taskId': typeof AppTasksTaskIdRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/app/board': typeof AppBoardRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/team': typeof AppTeamRoute
   '/app': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/app/tasks/$taskId': typeof AppTasksTaskIdRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/app/board': typeof AppBoardRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/team': typeof AppTeamRoute
   '/app/': typeof AppIndexRoute
   '/app/projects/$projectId': typeof AppProjectsProjectIdRoute
   '/app/tasks/$taskId': typeof AppTasksTaskIdRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/app/board'
     | '/app/calendar'
     | '/app/dashboard'
+    | '/app/team'
     | '/app/'
     | '/app/projects/$projectId'
     | '/app/tasks/$taskId'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/app/board'
     | '/app/calendar'
     | '/app/dashboard'
+    | '/app/team'
     | '/app'
     | '/app/projects/$projectId'
     | '/app/tasks/$taskId'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/app/board'
     | '/app/calendar'
     | '/app/dashboard'
+    | '/app/team'
     | '/app/'
     | '/app/projects/$projectId'
     | '/app/tasks/$taskId'
@@ -234,6 +246,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/team': {
+      id: '/app/team'
+      path: '/team'
+      fullPath: '/app/team'
+      preLoaderRoute: typeof AppTeamRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/projects/': {
       id: '/app/projects/'
       path: '/projects'
@@ -269,6 +288,7 @@ interface AppRouteChildren {
   AppBoardRoute: typeof AppBoardRoute
   AppCalendarRoute: typeof AppCalendarRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppTeamRoute: typeof AppTeamRoute
   AppIndexRoute: typeof AppIndexRoute
   AppProjectsProjectIdRoute: typeof AppProjectsProjectIdRoute
   AppTasksTaskIdRoute: typeof AppTasksTaskIdRoute
@@ -280,6 +300,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppBoardRoute: AppBoardRoute,
   AppCalendarRoute: AppCalendarRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppTeamRoute: AppTeamRoute,
   AppIndexRoute: AppIndexRoute,
   AppProjectsProjectIdRoute: AppProjectsProjectIdRoute,
   AppTasksTaskIdRoute: AppTasksTaskIdRoute,
