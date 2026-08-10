@@ -595,6 +595,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      bootstrap_workspace: { Args: never; Returns: string }
       current_profile_id: { Args: never; Returns: string }
       is_workspace_admin: { Args: { _workspace_id: string }; Returns: boolean }
       is_workspace_member: { Args: { _workspace_id: string }; Returns: boolean }
