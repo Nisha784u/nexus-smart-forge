@@ -1,5 +1,6 @@
 export type Priority = "low" | "medium" | "high" | "urgent";
 export type Status = "backlog" | "todo" | "in-progress" | "review" | "done";
+export type WorkspaceRole = "owner" | "admin" | "member";
 
 export type Member = {
   id: string;
@@ -12,7 +13,11 @@ export type Member = {
   completedTasks: number;
   workload: number;
   presence: "online" | "away" | "offline";
+  workspaceRole: WorkspaceRole;
+  isCurrentUser: boolean;
 };
+
+export type Subtask = { id: string; title: string; done: boolean };
 
 export type Task = {
   id: string;
@@ -22,11 +27,16 @@ export type Task = {
   status: Status;
   priority: Priority;
   assigneeId: string;
+  /** Display label, e.g. "May 24" */
   due: string;
+  /** ISO date (yyyy-mm-dd) or null */
+  dueDate: string | null;
   comments: number;
   attachments: number;
-  subtasks: { id: string; title: string; done: boolean }[];
+  subtasks: Subtask[];
   tags: string[];
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type Project = {
@@ -38,6 +48,7 @@ export type Project = {
   tasksDone: number;
   tasksTotal: number;
   due: string;
+  dueDate: string | null;
   memberIds: string[];
   aiActive?: boolean;
   health: number;
@@ -56,119 +67,31 @@ export type Notification = {
 export type CalendarEvent = {
   id: string;
   title: string;
+  /** Day of month, derived from `date` */
   day: number;
+  /** ISO date (yyyy-mm-dd) */
+  date: string;
   kind: "deadline" | "meeting" | "milestone" | "event";
+  time: string;
+  projectId: string | null;
+};
+
+export type ActivityItem = {
+  id: string;
+  who: string;
+  what: string;
+  target: string;
   time: string;
 };
 
-export const members: Member[] = [
-  { id: "u1", name: "Nisha Rao", role: "Product Manager", initials: "NR", color: "var(--electric)", email: "nisha@nexusflow.io", activeTasks: 8, completedTasks: 62, workload: 78, presence: "online" },
-  { id: "u2", name: "Priya Menon", role: "Lead Designer", initials: "PM", color: "var(--violet)", email: "priya@nexusflow.io", activeTasks: 11, completedTasks: 74, workload: 94, presence: "online" },
-  { id: "u3", name: "Arjun Mehta", role: "Frontend Engineer", initials: "AM", color: "var(--cyan)", email: "arjun@nexusflow.io", activeTasks: 5, completedTasks: 48, workload: 51, presence: "away" },
-  { id: "u4", name: "Kavya Iyer", role: "QA Engineer", initials: "KI", color: "var(--success)", email: "kavya@nexusflow.io", activeTasks: 7, completedTasks: 39, workload: 66, presence: "online" },
-  { id: "u5", name: "Rohan Shah", role: "Backend Engineer", initials: "RS", color: "var(--warning)", email: "rohan@nexusflow.io", activeTasks: 9, completedTasks: 55, workload: 84, presence: "offline" },
-  { id: "u6", name: "Ishaan Verma", role: "AI Engineer", initials: "IV", color: "var(--violet)", email: "ishaan@nexusflow.io", activeTasks: 6, completedTasks: 44, workload: 72, presence: "online" },
-  { id: "u7", name: "Riya Kapoor", role: "Project Coordinator", initials: "RK", color: "var(--cyan)", email: "riya@nexusflow.io", activeTasks: 4, completedTasks: 31, workload: 45, presence: "away" },
-];
-
-
-export const projects: Project[] = [
-  { id: "p1", name: "Mobile App", description: "Cross-platform companion app with offline sync and push workflows.", progress: 72, status: "on-track", tasksDone: 36, tasksTotal: 50, due: "Jun 14", memberIds: ["u1", "u3", "u4", "u7"], health: 84 },
-  { id: "p2", name: "Website Redesign", description: "Marketing site rebuild with a new design system and CMS pipeline.", progress: 48, status: "at-risk", tasksDone: 19, tasksTotal: 40, due: "Jun 02", memberIds: ["u2", "u3", "u7"], health: 61 },
-  { id: "p3", name: "Nexus AI Dashboard", description: "Realtime AI analytics surface for workspace-wide project intelligence.", progress: 90, status: "on-track", tasksDone: 45, tasksTotal: 50, due: "May 30", memberIds: ["u1", "u2", "u4", "u5", "u6"], aiActive: true, health: 90 },
-  { id: "p4", name: "Marketing Website", description: "Campaign landing pages, lifecycle emails and attribution tracking.", progress: 25, status: "planning", tasksDone: 8, tasksTotal: 32, due: "Jul 09", memberIds: ["u2", "u5", "u6"], health: 72 },
-];
-
-const t = (
-  id: string,
-  title: string,
-  projectId: string,
-  status: Status,
-  priority: Priority,
-  assigneeId: string,
-  due: string,
-  extra: Partial<Task> = {},
-): Task => ({
-  id,
-  title,
-  description:
-    extra.description ??
-    "Integrate the payment gateway API and handle all transaction workflows, including retries, webhooks and reconciliation.",
-  projectId,
-  status,
-  priority,
-  assigneeId,
-  due,
-  comments: extra.comments ?? 3,
-  attachments: extra.attachments ?? 1,
-  subtasks:
-    extra.subtasks ??
-    [
-      { id: id + "-s1", title: "Set up API endpoint", done: true },
-      { id: id + "-s2", title: "Implement authentication", done: true },
-      { id: id + "-s3", title: "Handle API responses", done: false },
-      { id: id + "-s4", title: "Error handling", done: false },
-    ],
-  tags: extra.tags ?? ["engineering"],
-});
-
-export const initialTasks: Task[] = [
-  t("t1", "API Integration", "p3", "in-progress", "high", "u1", "May 24", { comments: 6, attachments: 3 }),
-  t("t2", "User Authentication", "p3", "backlog", "medium", "u5", "May 28"),
-  t("t3", "Order Summary redesign", "p2", "todo", "high", "u2", "May 21", { comments: 2 }),
-  t("t4", "Payment Gateway", "p1", "in-progress", "urgent", "u5", "May 20", { comments: 9, attachments: 4 }),
-  t("t5", "Design System tokens", "p2", "review", "medium", "u2", "May 26"),
-  t("t6", "Offline sync engine", "p1", "in-progress", "high", "u3", "May 25"),
-  t("t7", "Onboarding flow", "p1", "todo", "low", "u2", "Jun 02"),
-  t("t8", "Analytics events", "p3", "done", "medium", "u4", "May 12"),
-  t("t9", "Push notifications", "p1", "backlog", "medium", "u3", "Jun 08"),
-  t("t10", "Landing page hero", "p4", "todo", "medium", "u2", "Jun 15"),
-  t("t11", "Regression test suite", "p3", "review", "high", "u4", "May 27", { comments: 4 }),
-  t("t12", "Deploy pipeline", "p3", "done", "low", "u5", "May 09"),
-  t("t13", "Content migration", "p4", "backlog", "low", "u5", "Jul 01"),
-  t("t14", "Accessibility audit", "p2", "in-progress", "medium", "u4", "May 29"),
-  t("t15", "Billing edge cases", "p1", "review", "urgent", "u5", "May 22", { comments: 7 }),
-  t("t16", "Release notes", "p3", "done", "low", "u1", "May 05"),
-];
-
-export const notifications: Notification[] = [
-  { id: "n1", type: "assigned", title: "New task assigned", body: "Priya assigned you “Design System tokens” in Website Redesign.", time: "2m ago", unread: true, mention: true },
-  { id: "n2", type: "ai", title: "Nexus AI recommendation", body: "Testing is the bottleneck on Nexus AI Dashboard. Reassign 2 tasks to Arjun.", time: "18m ago", unread: true },
-  { id: "n3", type: "comment", title: "New comment", body: "Arjun mentioned you on “API Integration”: can we ship the retry logic first?", time: "1h ago", unread: true, mention: true },
-  { id: "n4", type: "deadline", title: "Deadline approaching", body: "“Payment Gateway” is due in 2 days.", time: "3h ago", unread: false },
-  { id: "n5", type: "completed", title: "Task completed", body: "Kavya completed “Analytics events”.", time: "Yesterday", unread: false },
-  { id: "n6", type: "project", title: "Project update", body: "Nexus AI Dashboard reached 90% completion.", time: "Yesterday", unread: false },
-];
-
-export const activity = [
-  { id: "a1", who: "Nisha Rao", what: "changed status to In Progress", target: "API Integration", time: "10m" },
-  { id: "a2", who: "Priya Menon", what: "added a comment on", target: "Design System tokens", time: "42m" },
-  { id: "a3", who: "Arjun Mehta", what: "attached a file to", target: "Offline sync engine", time: "2h" },
-  { id: "a4", who: "Kavya Iyer", what: "completed", target: "Analytics events", time: "5h" },
-  { id: "a5", who: "Rohan Shah", what: "opened a review on", target: "Billing edge cases", time: "8h" },
-  { id: "a6", who: "Ishaan Verma", what: "generated AI insights for", target: "Nexus AI Dashboard", time: "6h" },
-  { id: "a7", who: "Riya Kapoor", what: "updated the timeline for", target: "Website Redesign", time: "9h" },
-];
-
-export const calendarEvents: CalendarEvent[] = [
-  { id: "e1", title: "Sprint planning", day: 4, kind: "meeting", time: "09:30" },
-  { id: "e2", title: "API Integration due", day: 11, kind: "deadline", time: "17:00" },
-  { id: "e3", title: "Design review", day: 11, kind: "meeting", time: "14:00" },
-  { id: "e4", title: "Beta milestone", day: 15, kind: "milestone", time: "All day" },
-  { id: "e5", title: "Payment Gateway due", day: 18, kind: "deadline", time: "18:00" },
-  { id: "e6", title: "Team offsite", day: 22, kind: "event", time: "10:00" },
-  { id: "e7", title: "Launch readiness", day: 26, kind: "milestone", time: "11:00" },
-  { id: "e8", title: "Retro", day: 29, kind: "meeting", time: "16:00" },
-];
-
-export const taskTrend = [
-  { week: "W1", created: 24, completed: 18, velocity: 32 },
-  { week: "W2", created: 31, completed: 26, velocity: 38 },
-  { week: "W3", created: 28, completed: 30, velocity: 41 },
-  { week: "W4", created: 35, completed: 33, velocity: 46 },
-  { week: "W5", created: 30, completed: 38, velocity: 52 },
-  { week: "W6", created: 42, completed: 40, velocity: 58 },
-];
+export type TaskComment = {
+  id: string;
+  taskId: string;
+  authorId: string;
+  body: string;
+  time: string;
+  createdAt: string;
+};
 
 export const statusLabels: Record<Status, string> = {
   backlog: "Backlog",
@@ -180,9 +103,62 @@ export const statusLabels: Record<Status, string> = {
 
 export const statusOrder: Status[] = ["backlog", "todo", "in-progress", "review", "done"];
 
-export function memberById(id: string) {
-  return (members.find((m) => m.id === id) ?? members[0]) as Member;
+const fallbackMember: Member = {
+  id: "unknown",
+  name: "Unassigned",
+  role: "—",
+  initials: "?",
+  color: "var(--electric)",
+  email: "",
+  activeTasks: 0,
+  completedTasks: 0,
+  workload: 0,
+  presence: "offline",
+  workspaceRole: "member",
+  isCurrentUser: false,
+};
+
+/**
+ * Registry of the members loaded for the signed-in user's workspace.
+ * Kept in sync by NexusProvider so presentational components can resolve a
+ * member by id without threading props through every layer.
+ */
+const memberRegistry = new Map<string, Member>();
+
+export function setMemberRegistry(list: Member[]) {
+  memberRegistry.clear();
+  for (const m of list) memberRegistry.set(m.id, m);
 }
-export function projectById(id: string) {
-  return projects.find((p) => p.id === id);
+
+export function memberById(id: string | null | undefined): Member {
+  if (!id) return fallbackMember;
+  return memberRegistry.get(id) ?? fallbackMember;
+}
+
+export function formatDueLabel(iso: string | null | undefined): string {
+  if (!iso) return "No date";
+  const d = new Date(iso + "T00:00:00");
+  if (Number.isNaN(d.getTime())) return "No date";
+  return d.toLocaleDateString("en-US", { month: "short", day: "2-digit" });
+}
+
+export function formatRelativeTime(iso: string): string {
+  const then = new Date(iso).getTime();
+  const diff = Date.now() - then;
+  const mins = Math.round(diff / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hours = Math.round(mins / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.round(hours / 24);
+  if (days === 1) return "Yesterday";
+  if (days < 7) return `${days}d ago`;
+  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+export function toIsoDate(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
 }
