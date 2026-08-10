@@ -58,8 +58,8 @@ function TaskDetails() {
   const [ai, setAi] = useState<{ label: string; items: string[] } | null>(null);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([
-    { who: "Sarah Johnson", text: "Can we ship the retry logic before the webhook work?", time: "1h" },
-    { who: "Mike Brown", text: "Sandbox keys are in the shared vault.", time: "3h" },
+    { who: "Priya", text: "Can we ship the retry logic before the webhook work?", time: "1h" },
+    { who: "Ananya", text: "Sandbox keys are in the shared vault.", time: "3h" },
   ]);
 
   if (!task) return null;
@@ -159,7 +159,7 @@ function TaskDetails() {
                   onSubmit={(e) => {
                     e.preventDefault();
                     if (!comment.trim()) return;
-                    setComments((prev) => [...prev, { who: "John Doe", text: comment.trim(), time: "now" }]);
+                    setComments((prev) => [...prev, { who: "Nisha", text: comment.trim(), time: "now" }]);
                     setComment("");
                   }}
                   className="flex gap-2"

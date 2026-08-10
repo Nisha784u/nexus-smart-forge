@@ -54,7 +54,7 @@ function DashboardPage() {
       <PageHeader
         title={
           <>
-            Good morning, John <span className="ml-1">👋</span>
+            Good morning, Nisha <span className="ml-1">👋</span>
           </>
         }
         subtitle="Here's what's happening across your workspace today."

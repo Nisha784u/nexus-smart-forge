@@ -73,7 +73,7 @@ function TeamPage() {
       <motion.div variants={fadeUp} className="mb-5">
         <AIInsightCard
           title="Workload rebalancing"
-          body="Sarah is at 94% capacity while Mike sits at 51%. Moving 2 design QA tasks would cut delivery risk on Website Redesign by ~18%."
+          body="Priya is at 94% capacity while Ananya sits at 51%. Moving 2 design QA tasks would cut delivery risk on Website Redesign by ~18%."
           actions={["Balance Workload", "Suggest Reassignments", "Forecast capacity"]}
         />
       </motion.div>

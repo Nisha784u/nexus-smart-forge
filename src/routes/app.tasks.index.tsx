@@ -152,11 +152,11 @@ function TasksPage() {
               onChange={setAssignee}
               options={[
                 { value: "all", label: "Anyone" },
-                { value: "u1", label: "John Doe" },
-                { value: "u2", label: "Sarah Johnson" },
-                { value: "u3", label: "Mike Brown" },
-                { value: "u4", label: "Emma Wilson" },
-                { value: "u5", label: "Alex Chen" },
+                { value: "u1", label: "Nisha" },
+                { value: "u2", label: "Priya" },
+                { value: "u3", label: "Ananya" },
+                { value: "u4", label: "Sneha" },
+                { value: "u5", label: "Rahul" },
               ]}
             />
           </div>

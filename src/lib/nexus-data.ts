@@ -62,11 +62,11 @@ export type CalendarEvent = {
 };
 
 export const members: Member[] = [
-  { id: "u1", name: "John Doe", role: "Product Manager", initials: "JD", color: "var(--electric)", email: "john@nexusflow.io", activeTasks: 8, completedTasks: 62, workload: 78, presence: "online" },
-  { id: "u2", name: "Sarah Johnson", role: "Lead Designer", initials: "SJ", color: "var(--violet)", email: "sarah@nexusflow.io", activeTasks: 11, completedTasks: 74, workload: 94, presence: "online" },
-  { id: "u3", name: "Mike Brown", role: "Frontend Engineer", initials: "MB", color: "var(--cyan)", email: "mike@nexusflow.io", activeTasks: 5, completedTasks: 48, workload: 51, presence: "away" },
-  { id: "u4", name: "Emma Wilson", role: "QA Engineer", initials: "EW", color: "var(--success)", email: "emma@nexusflow.io", activeTasks: 7, completedTasks: 39, workload: 66, presence: "online" },
-  { id: "u5", name: "Alex Chen", role: "Backend Engineer", initials: "AC", color: "var(--warning)", email: "alex@nexusflow.io", activeTasks: 9, completedTasks: 55, workload: 84, presence: "offline" },
+  { id: "u1", name: "Nisha", role: "Product Manager", initials: "JD", color: "var(--electric)", email: "nisha@nexusflow.io", activeTasks: 8, completedTasks: 62, workload: 78, presence: "online" },
+  { id: "u2", name: "Priya", role: "Lead Designer", initials: "SJ", color: "var(--violet)", email: "sarah@nexusflow.io", activeTasks: 11, completedTasks: 74, workload: 94, presence: "online" },
+  { id: "u3", name: "Ananya", role: "Frontend Engineer", initials: "MB", color: "var(--cyan)", email: "mike@nexusflow.io", activeTasks: 5, completedTasks: 48, workload: 51, presence: "away" },
+  { id: "u4", name: "Sneha", role: "QA Engineer", initials: "EW", color: "var(--success)", email: "emma@nexusflow.io", activeTasks: 7, completedTasks: 39, workload: 66, presence: "online" },
+  { id: "u5", name: "Rahul", role: "Backend Engineer", initials: "AC", color: "var(--warning)", email: "alex@nexusflow.io", activeTasks: 9, completedTasks: 55, workload: 84, presence: "offline" },
 ];
 
 export const projects: Project[] = [
@@ -129,20 +129,20 @@ export const initialTasks: Task[] = [
 ];
 
 export const notifications: Notification[] = [
-  { id: "n1", type: "assigned", title: "New task assigned", body: "Sarah assigned you “Design System tokens” in Website Redesign.", time: "2m ago", unread: true, mention: true },
-  { id: "n2", type: "ai", title: "Nexus AI recommendation", body: "Testing is the bottleneck on Nexus AI Dashboard. Reassign 2 tasks to Mike.", time: "18m ago", unread: true },
-  { id: "n3", type: "comment", title: "New comment", body: "Mike mentioned you on “API Integration”: can we ship the retry logic first?", time: "1h ago", unread: true, mention: true },
+  { id: "n1", type: "assigned", title: "New task assigned", body: "Priya assigned you “Design System tokens” in Website Redesign.", time: "2m ago", unread: true, mention: true },
+  { id: "n2", type: "ai", title: "Nexus AI recommendation", body: "Testing is the bottleneck on Nexus AI Dashboard. Reassign 2 tasks to Ananya.", time: "18m ago", unread: true },
+  { id: "n3", type: "comment", title: "New comment", body: "Ananya mentioned you on “API Integration”: can we ship the retry logic first?", time: "1h ago", unread: true, mention: true },
   { id: "n4", type: "deadline", title: "Deadline approaching", body: "“Payment Gateway” is due in 2 days.", time: "3h ago", unread: false },
-  { id: "n5", type: "completed", title: "Task completed", body: "Emma completed “Analytics events”.", time: "Yesterday", unread: false },
+  { id: "n5", type: "completed", title: "Task completed", body: "Sneha completed “Analytics events”.", time: "Yesterday", unread: false },
   { id: "n6", type: "project", title: "Project update", body: "Nexus AI Dashboard reached 90% completion.", time: "Yesterday", unread: false },
 ];
 
 export const activity = [
-  { id: "a1", who: "John Doe", what: "changed status to In Progress", target: "API Integration", time: "10m" },
-  { id: "a2", who: "Sarah Johnson", what: "added a comment on", target: "Design System tokens", time: "42m" },
-  { id: "a3", who: "Mike Brown", what: "attached a file to", target: "Offline sync engine", time: "2h" },
-  { id: "a4", who: "Emma Wilson", what: "completed", target: "Analytics events", time: "5h" },
-  { id: "a5", who: "Alex Chen", what: "opened a review on", target: "Billing edge cases", time: "8h" },
+  { id: "a1", who: "Nisha", what: "changed status to In Progress", target: "API Integration", time: "10m" },
+  { id: "a2", who: "Priya", what: "added a comment on", target: "Design System tokens", time: "42m" },
+  { id: "a3", who: "Ananya", what: "attached a file to", target: "Offline sync engine", time: "2h" },
+  { id: "a4", who: "Sneha", what: "completed", target: "Analytics events", time: "5h" },
+  { id: "a5", who: "Rahul", what: "opened a review on", target: "Billing edge cases", time: "8h" },
 ];
 
 export const calendarEvents: CalendarEvent[] = [
