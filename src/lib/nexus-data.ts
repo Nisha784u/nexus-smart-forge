@@ -62,18 +62,21 @@ export type CalendarEvent = {
 };
 
 export const members: Member[] = [
-  { id: "u1", name: "John Doe", role: "Product Manager", initials: "JD", color: "var(--electric)", email: "john@nexusflow.io", activeTasks: 8, completedTasks: 62, workload: 78, presence: "online" },
-  { id: "u2", name: "Sarah Johnson", role: "Lead Designer", initials: "SJ", color: "var(--violet)", email: "sarah@nexusflow.io", activeTasks: 11, completedTasks: 74, workload: 94, presence: "online" },
-  { id: "u3", name: "Mike Brown", role: "Frontend Engineer", initials: "MB", color: "var(--cyan)", email: "mike@nexusflow.io", activeTasks: 5, completedTasks: 48, workload: 51, presence: "away" },
-  { id: "u4", name: "Emma Wilson", role: "QA Engineer", initials: "EW", color: "var(--success)", email: "emma@nexusflow.io", activeTasks: 7, completedTasks: 39, workload: 66, presence: "online" },
-  { id: "u5", name: "Alex Chen", role: "Backend Engineer", initials: "AC", color: "var(--warning)", email: "alex@nexusflow.io", activeTasks: 9, completedTasks: 55, workload: 84, presence: "offline" },
+  { id: "u1", name: "Nisha", role: "Product Manager", initials: "N", color: "var(--electric)", email: "nisha@nexusflow.io", activeTasks: 8, completedTasks: 62, workload: 78, presence: "online" },
+  { id: "u2", name: "Priya", role: "UI/UX Designer", initials: "P", color: "var(--violet)", email: "priya@nexusflow.io", activeTasks: 11, completedTasks: 74, workload: 94, presence: "online" },
+  { id: "u3", name: "Ananya", role: "Frontend Developer", initials: "A", color: "var(--cyan)", email: "ananya@nexusflow.io", activeTasks: 5, completedTasks: 48, workload: 51, presence: "away" },
+  { id: "u4", name: "Sneha", role: "QA Engineer", initials: "S", color: "var(--success)", email: "sneha@nexusflow.io", activeTasks: 7, completedTasks: 39, workload: 66, presence: "online" },
+  { id: "u5", name: "Rahul", role: "Backend Developer", initials: "R", color: "var(--warning)", email: "rahul@nexusflow.io", activeTasks: 9, completedTasks: 55, workload: 84, presence: "offline" },
+  { id: "u6", name: "Arjun", role: "AI Engineer", initials: "A", color: "var(--violet)", email: "arjun@nexusflow.io", activeTasks: 6, completedTasks: 44, workload: 72, presence: "online" },
+  { id: "u7", name: "Rohan", role: "Project Coordinator", initials: "R", color: "var(--cyan)", email: "rohan@nexusflow.io", activeTasks: 4, completedTasks: 31, workload: 45, presence: "away" },
 ];
 
+
 export const projects: Project[] = [
-  { id: "p1", name: "Mobile App", description: "Cross-platform companion app with offline sync and push workflows.", progress: 72, status: "on-track", tasksDone: 36, tasksTotal: 50, due: "Jun 14", memberIds: ["u1", "u3", "u4"], health: 84 },
-  { id: "p2", name: "Website Redesign", description: "Marketing site rebuild with a new design system and CMS pipeline.", progress: 48, status: "at-risk", tasksDone: 19, tasksTotal: 40, due: "Jun 02", memberIds: ["u2", "u3"], health: 61 },
-  { id: "p3", name: "Nexus AI Dashboard", description: "Realtime AI analytics surface for workspace-wide project intelligence.", progress: 90, status: "on-track", tasksDone: 45, tasksTotal: 50, due: "May 30", memberIds: ["u1", "u2", "u4", "u5"], aiActive: true, health: 90 },
-  { id: "p4", name: "Marketing Website", description: "Campaign landing pages, lifecycle emails and attribution tracking.", progress: 25, status: "planning", tasksDone: 8, tasksTotal: 32, due: "Jul 09", memberIds: ["u2", "u5"], health: 72 },
+  { id: "p1", name: "Mobile App", description: "Cross-platform companion app with offline sync and push workflows.", progress: 72, status: "on-track", tasksDone: 36, tasksTotal: 50, due: "Jun 14", memberIds: ["u1", "u3", "u4", "u7"], health: 84 },
+  { id: "p2", name: "Website Redesign", description: "Marketing site rebuild with a new design system and CMS pipeline.", progress: 48, status: "at-risk", tasksDone: 19, tasksTotal: 40, due: "Jun 02", memberIds: ["u2", "u3", "u7"], health: 61 },
+  { id: "p3", name: "Nexus AI Dashboard", description: "Realtime AI analytics surface for workspace-wide project intelligence.", progress: 90, status: "on-track", tasksDone: 45, tasksTotal: 50, due: "May 30", memberIds: ["u1", "u2", "u4", "u5", "u6"], aiActive: true, health: 90 },
+  { id: "p4", name: "Marketing Website", description: "Campaign landing pages, lifecycle emails and attribution tracking.", progress: 25, status: "planning", tasksDone: 8, tasksTotal: 32, due: "Jul 09", memberIds: ["u2", "u5", "u6"], health: 72 },
 ];
 
 const t = (
@@ -129,20 +132,22 @@ export const initialTasks: Task[] = [
 ];
 
 export const notifications: Notification[] = [
-  { id: "n1", type: "assigned", title: "New task assigned", body: "Sarah assigned you “Design System tokens” in Website Redesign.", time: "2m ago", unread: true, mention: true },
-  { id: "n2", type: "ai", title: "Nexus AI recommendation", body: "Testing is the bottleneck on Nexus AI Dashboard. Reassign 2 tasks to Mike.", time: "18m ago", unread: true },
-  { id: "n3", type: "comment", title: "New comment", body: "Mike mentioned you on “API Integration”: can we ship the retry logic first?", time: "1h ago", unread: true, mention: true },
+  { id: "n1", type: "assigned", title: "New task assigned", body: "Priya assigned you “Design System tokens” in Website Redesign.", time: "2m ago", unread: true, mention: true },
+  { id: "n2", type: "ai", title: "Nexus AI recommendation", body: "Testing is the bottleneck on Nexus AI Dashboard. Reassign 2 tasks to Ananya.", time: "18m ago", unread: true },
+  { id: "n3", type: "comment", title: "New comment", body: "Ananya mentioned you on “API Integration”: can we ship the retry logic first?", time: "1h ago", unread: true, mention: true },
   { id: "n4", type: "deadline", title: "Deadline approaching", body: "“Payment Gateway” is due in 2 days.", time: "3h ago", unread: false },
-  { id: "n5", type: "completed", title: "Task completed", body: "Emma completed “Analytics events”.", time: "Yesterday", unread: false },
+  { id: "n5", type: "completed", title: "Task completed", body: "Sneha completed “Analytics events”.", time: "Yesterday", unread: false },
   { id: "n6", type: "project", title: "Project update", body: "Nexus AI Dashboard reached 90% completion.", time: "Yesterday", unread: false },
 ];
 
 export const activity = [
-  { id: "a1", who: "John Doe", what: "changed status to In Progress", target: "API Integration", time: "10m" },
-  { id: "a2", who: "Sarah Johnson", what: "added a comment on", target: "Design System tokens", time: "42m" },
-  { id: "a3", who: "Mike Brown", what: "attached a file to", target: "Offline sync engine", time: "2h" },
-  { id: "a4", who: "Emma Wilson", what: "completed", target: "Analytics events", time: "5h" },
-  { id: "a5", who: "Alex Chen", what: "opened a review on", target: "Billing edge cases", time: "8h" },
+  { id: "a1", who: "Nisha", what: "created", target: "API Integration", time: "10m" },
+  { id: "a2", who: "Priya", what: "completed", target: "Dashboard UI", time: "42m" },
+  { id: "a3", who: "Rahul", what: "updated", target: "Authentication API", time: "2h" },
+  { id: "a4", who: "Ananya", what: "moved to Review", target: "Dashboard Testing", time: "5h" },
+  { id: "a5", who: "Arjun", what: "generated AI insights for", target: "Nexus AI Dashboard", time: "6h" },
+  { id: "a6", who: "Sneha", what: "completed QA testing on", target: "Analytics events", time: "8h" },
+  { id: "a7", who: "Rohan", what: "updated the timeline for", target: "Website Redesign", time: "9h" },
 ];
 
 export const calendarEvents: CalendarEvent[] = [

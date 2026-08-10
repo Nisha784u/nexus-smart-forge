@@ -115,15 +115,15 @@ function SettingsPage() {
                       className="flex size-14 items-center justify-center rounded-full text-base font-semibold text-primary-foreground"
                       style={{ background: members[0]!.color }}
                     >
-                      JD
+                      N
                     </span>
                     <button className="rounded-lg border border-border/70 px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground">
                       Change avatar
                     </button>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Full name" defaultValue="John Doe" />
-                    <Field label="Email" defaultValue="john@nexusflow.io" />
+                    <Field label="Name" defaultValue="Nisha" />
+                    <Field label="Email" defaultValue="nisha@nexusflow.io" />
                     <Field label="Role" defaultValue="Product Manager" />
                     <Field label="Timezone" defaultValue="UTC+01:00" />
                   </div>
