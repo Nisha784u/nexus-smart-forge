@@ -13,8 +13,8 @@ export type Member = {
   completedTasks: number;
   workload: number;
   presence: "online" | "away" | "offline";
-  workspaceRole: WorkspaceRole;
-  isCurrentUser: boolean;
+  workspaceRole?: WorkspaceRole;
+  isCurrentUser?: boolean;
 };
 
 export type Subtask = { id: string; title: string; done: boolean };
@@ -30,13 +30,13 @@ export type Task = {
   /** Display label, e.g. "May 24" */
   due: string;
   /** ISO date (yyyy-mm-dd) or null */
-  dueDate: string | null;
+  dueDate?: string | null;
   comments: number;
   attachments: number;
   subtasks: Subtask[];
   tags: string[];
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 };
 
 export type Project = {
@@ -48,7 +48,7 @@ export type Project = {
   tasksDone: number;
   tasksTotal: number;
   due: string;
-  dueDate: string | null;
+  dueDate?: string | null;
   memberIds: string[];
   aiActive?: boolean;
   health: number;
@@ -70,10 +70,10 @@ export type CalendarEvent = {
   /** Day of month, derived from `date` */
   day: number;
   /** ISO date (yyyy-mm-dd) */
-  date: string;
+  date?: string;
   kind: "deadline" | "meeting" | "milestone" | "event";
   time: string;
-  projectId: string | null;
+  projectId?: string | null;
 };
 
 export type ActivityItem = {
