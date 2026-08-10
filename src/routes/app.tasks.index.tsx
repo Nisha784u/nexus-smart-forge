@@ -157,6 +157,8 @@ function TasksPage() {
                 { value: "u3", label: "Ananya" },
                 { value: "u4", label: "Sneha" },
                 { value: "u5", label: "Rahul" },
+                { value: "u6", label: "Arjun" },
+                { value: "u7", label: "Rohan" },
               ]}
             />
           </div>
