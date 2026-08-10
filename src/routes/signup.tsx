@@ -29,7 +29,7 @@ function SignupPage() {
           </>
         }
       >
-        <Field label="Full name" placeholder="Nisha" />
+        <Field label="Name" placeholder="Nisha" />
         <Field label="Work email" type="email" placeholder="john@company.com" />
         <Field label="Password" type="password" placeholder="At least 8 characters" />
         <PrimaryButton to="/app/dashboard">Create account</PrimaryButton>

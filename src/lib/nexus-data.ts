@@ -73,10 +73,10 @@ export const members: Member[] = [
 
 
 export const projects: Project[] = [
-  { id: "p1", name: "Mobile App", description: "Cross-platform companion app with offline sync and push workflows.", progress: 72, status: "on-track", tasksDone: 36, tasksTotal: 50, due: "Jun 14", memberIds: ["u1", "u3", "u4"], health: 84 },
-  { id: "p2", name: "Website Redesign", description: "Marketing site rebuild with a new design system and CMS pipeline.", progress: 48, status: "at-risk", tasksDone: 19, tasksTotal: 40, due: "Jun 02", memberIds: ["u2", "u3"], health: 61 },
-  { id: "p3", name: "Nexus AI Dashboard", description: "Realtime AI analytics surface for workspace-wide project intelligence.", progress: 90, status: "on-track", tasksDone: 45, tasksTotal: 50, due: "May 30", memberIds: ["u1", "u2", "u4", "u5"], aiActive: true, health: 90 },
-  { id: "p4", name: "Marketing Website", description: "Campaign landing pages, lifecycle emails and attribution tracking.", progress: 25, status: "planning", tasksDone: 8, tasksTotal: 32, due: "Jul 09", memberIds: ["u2", "u5"], health: 72 },
+  { id: "p1", name: "Mobile App", description: "Cross-platform companion app with offline sync and push workflows.", progress: 72, status: "on-track", tasksDone: 36, tasksTotal: 50, due: "Jun 14", memberIds: ["u1", "u3", "u4", "u7"], health: 84 },
+  { id: "p2", name: "Website Redesign", description: "Marketing site rebuild with a new design system and CMS pipeline.", progress: 48, status: "at-risk", tasksDone: 19, tasksTotal: 40, due: "Jun 02", memberIds: ["u2", "u3", "u7"], health: 61 },
+  { id: "p3", name: "Nexus AI Dashboard", description: "Realtime AI analytics surface for workspace-wide project intelligence.", progress: 90, status: "on-track", tasksDone: 45, tasksTotal: 50, due: "May 30", memberIds: ["u1", "u2", "u4", "u5", "u6"], aiActive: true, health: 90 },
+  { id: "p4", name: "Marketing Website", description: "Campaign landing pages, lifecycle emails and attribution tracking.", progress: 25, status: "planning", tasksDone: 8, tasksTotal: 32, due: "Jul 09", memberIds: ["u2", "u5", "u6"], health: 72 },
 ];
 
 const t = (

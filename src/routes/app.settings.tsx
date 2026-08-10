@@ -122,7 +122,7 @@ function SettingsPage() {
                     </button>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Full name" defaultValue="Nisha" />
+                    <Field label="Name" defaultValue="Nisha" />
                     <Field label="Email" defaultValue="nisha@nexusflow.io" />
                     <Field label="Role" defaultValue="Product Manager" />
                     <Field label="Timezone" defaultValue="UTC+01:00" />
