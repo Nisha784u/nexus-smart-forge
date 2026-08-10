@@ -141,11 +141,13 @@ export const notifications: Notification[] = [
 ];
 
 export const activity = [
-  { id: "a1", who: "Nisha", what: "changed status to In Progress", target: "API Integration", time: "10m" },
-  { id: "a2", who: "Priya", what: "added a comment on", target: "Design System tokens", time: "42m" },
-  { id: "a3", who: "Ananya", what: "attached a file to", target: "Offline sync engine", time: "2h" },
-  { id: "a4", who: "Sneha", what: "completed", target: "Analytics events", time: "5h" },
-  { id: "a5", who: "Rahul", what: "opened a review on", target: "Billing edge cases", time: "8h" },
+  { id: "a1", who: "Nisha", what: "created", target: "API Integration", time: "10m" },
+  { id: "a2", who: "Priya", what: "completed", target: "Dashboard UI", time: "42m" },
+  { id: "a3", who: "Rahul", what: "updated", target: "Authentication API", time: "2h" },
+  { id: "a4", who: "Ananya", what: "moved to Review", target: "Dashboard Testing", time: "5h" },
+  { id: "a5", who: "Arjun", what: "generated AI insights for", target: "Nexus AI Dashboard", time: "6h" },
+  { id: "a6", who: "Sneha", what: "completed QA testing on", target: "Analytics events", time: "8h" },
+  { id: "a7", who: "Rohan", what: "updated the timeline for", target: "Website Redesign", time: "9h" },
 ];
 
 export const calendarEvents: CalendarEvent[] = [
