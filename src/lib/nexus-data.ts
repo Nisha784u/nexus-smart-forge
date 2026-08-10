@@ -276,3 +276,5 @@ export const taskTrend = [
 export function projectById(id: string) {
   return projects.find((p) => p.id === id);
 }
+
+setMemberRegistry(members);
