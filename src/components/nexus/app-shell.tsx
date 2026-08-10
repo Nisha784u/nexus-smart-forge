@@ -206,7 +206,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             </Link>
             <Link to="/app/settings" className="flex items-center gap-2 rounded-lg border border-border/70 bg-surface p-1 pr-2.5">
               <span className="flex size-6 items-center justify-center rounded-md bg-[var(--gradient-ai)] text-[10px] font-bold text-background">
-                JD
+                N
               </span>
               <span className="hidden text-xs font-medium sm:block">Nisha Rao</span>
             </Link>

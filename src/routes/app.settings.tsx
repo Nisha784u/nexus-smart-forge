@@ -115,7 +115,7 @@ function SettingsPage() {
                       className="flex size-14 items-center justify-center rounded-full text-base font-semibold text-primary-foreground"
                       style={{ background: members[0]!.color }}
                     >
-                      JD
+                      N
                     </span>
                     <button className="rounded-lg border border-border/70 px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground">
                       Change avatar

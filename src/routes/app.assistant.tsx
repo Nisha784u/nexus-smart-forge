@@ -88,7 +88,7 @@ function AssistantPage() {
               <NexusOrb size={28} />
             ) : (
               <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-surface-2 text-[10px] font-semibold">
-                JD
+                N
               </span>
             )}
             <div

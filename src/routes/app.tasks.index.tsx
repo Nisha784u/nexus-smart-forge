@@ -157,6 +157,8 @@ function TasksPage() {
                 { value: "u3", label: "Arjun Mehta" },
                 { value: "u4", label: "Kavya Iyer" },
                 { value: "u5", label: "Rohan Shah" },
+                { value: "u6", label: "Ishaan Verma" },
+                { value: "u7", label: "Riya Kapoor" },
               ]}
             />
           </div>

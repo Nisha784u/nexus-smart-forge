@@ -67,13 +67,16 @@ export const members: Member[] = [
   { id: "u3", name: "Arjun Mehta", role: "Frontend Engineer", initials: "AM", color: "var(--cyan)", email: "arjun@nexusflow.io", activeTasks: 5, completedTasks: 48, workload: 51, presence: "away" },
   { id: "u4", name: "Kavya Iyer", role: "QA Engineer", initials: "KI", color: "var(--success)", email: "kavya@nexusflow.io", activeTasks: 7, completedTasks: 39, workload: 66, presence: "online" },
   { id: "u5", name: "Rohan Shah", role: "Backend Engineer", initials: "RS", color: "var(--warning)", email: "rohan@nexusflow.io", activeTasks: 9, completedTasks: 55, workload: 84, presence: "offline" },
+  { id: "u6", name: "Ishaan Verma", role: "AI Engineer", initials: "IV", color: "var(--violet)", email: "ishaan@nexusflow.io", activeTasks: 6, completedTasks: 44, workload: 72, presence: "online" },
+  { id: "u7", name: "Riya Kapoor", role: "Project Coordinator", initials: "RK", color: "var(--cyan)", email: "riya@nexusflow.io", activeTasks: 4, completedTasks: 31, workload: 45, presence: "away" },
 ];
 
+
 export const projects: Project[] = [
-  { id: "p1", name: "Mobile App", description: "Cross-platform companion app with offline sync and push workflows.", progress: 72, status: "on-track", tasksDone: 36, tasksTotal: 50, due: "Jun 14", memberIds: ["u1", "u3", "u4"], health: 84 },
-  { id: "p2", name: "Website Redesign", description: "Marketing site rebuild with a new design system and CMS pipeline.", progress: 48, status: "at-risk", tasksDone: 19, tasksTotal: 40, due: "Jun 02", memberIds: ["u2", "u3"], health: 61 },
-  { id: "p3", name: "Nexus AI Dashboard", description: "Realtime AI analytics surface for workspace-wide project intelligence.", progress: 90, status: "on-track", tasksDone: 45, tasksTotal: 50, due: "May 30", memberIds: ["u1", "u2", "u4", "u5"], aiActive: true, health: 90 },
-  { id: "p4", name: "Marketing Website", description: "Campaign landing pages, lifecycle emails and attribution tracking.", progress: 25, status: "planning", tasksDone: 8, tasksTotal: 32, due: "Jul 09", memberIds: ["u2", "u5"], health: 72 },
+  { id: "p1", name: "Mobile App", description: "Cross-platform companion app with offline sync and push workflows.", progress: 72, status: "on-track", tasksDone: 36, tasksTotal: 50, due: "Jun 14", memberIds: ["u1", "u3", "u4", "u7"], health: 84 },
+  { id: "p2", name: "Website Redesign", description: "Marketing site rebuild with a new design system and CMS pipeline.", progress: 48, status: "at-risk", tasksDone: 19, tasksTotal: 40, due: "Jun 02", memberIds: ["u2", "u3", "u7"], health: 61 },
+  { id: "p3", name: "Nexus AI Dashboard", description: "Realtime AI analytics surface for workspace-wide project intelligence.", progress: 90, status: "on-track", tasksDone: 45, tasksTotal: 50, due: "May 30", memberIds: ["u1", "u2", "u4", "u5", "u6"], aiActive: true, health: 90 },
+  { id: "p4", name: "Marketing Website", description: "Campaign landing pages, lifecycle emails and attribution tracking.", progress: 25, status: "planning", tasksDone: 8, tasksTotal: 32, due: "Jul 09", memberIds: ["u2", "u5", "u6"], health: 72 },
 ];
 
 const t = (
@@ -143,6 +146,8 @@ export const activity = [
   { id: "a3", who: "Arjun Mehta", what: "attached a file to", target: "Offline sync engine", time: "2h" },
   { id: "a4", who: "Kavya Iyer", what: "completed", target: "Analytics events", time: "5h" },
   { id: "a5", who: "Rohan Shah", what: "opened a review on", target: "Billing edge cases", time: "8h" },
+  { id: "a6", who: "Ishaan Verma", what: "generated AI insights for", target: "Nexus AI Dashboard", time: "6h" },
+  { id: "a7", who: "Riya Kapoor", what: "updated the timeline for", target: "Website Redesign", time: "9h" },
 ];
 
 export const calendarEvents: CalendarEvent[] = [
