@@ -62,12 +62,15 @@ export type CalendarEvent = {
 };
 
 export const members: Member[] = [
-  { id: "u1", name: "Nisha", role: "Product Manager", initials: "JD", color: "var(--electric)", email: "nisha@nexusflow.io", activeTasks: 8, completedTasks: 62, workload: 78, presence: "online" },
-  { id: "u2", name: "Priya", role: "Lead Designer", initials: "SJ", color: "var(--violet)", email: "sarah@nexusflow.io", activeTasks: 11, completedTasks: 74, workload: 94, presence: "online" },
-  { id: "u3", name: "Ananya", role: "Frontend Engineer", initials: "MB", color: "var(--cyan)", email: "mike@nexusflow.io", activeTasks: 5, completedTasks: 48, workload: 51, presence: "away" },
-  { id: "u4", name: "Sneha", role: "QA Engineer", initials: "EW", color: "var(--success)", email: "emma@nexusflow.io", activeTasks: 7, completedTasks: 39, workload: 66, presence: "online" },
-  { id: "u5", name: "Rahul", role: "Backend Engineer", initials: "AC", color: "var(--warning)", email: "alex@nexusflow.io", activeTasks: 9, completedTasks: 55, workload: 84, presence: "offline" },
+  { id: "u1", name: "Nisha", role: "Product Manager", initials: "N", color: "var(--electric)", email: "nisha@nexusflow.io", activeTasks: 8, completedTasks: 62, workload: 78, presence: "online" },
+  { id: "u2", name: "Priya", role: "UI/UX Designer", initials: "P", color: "var(--violet)", email: "priya@nexusflow.io", activeTasks: 11, completedTasks: 74, workload: 94, presence: "online" },
+  { id: "u3", name: "Ananya", role: "Frontend Developer", initials: "A", color: "var(--cyan)", email: "ananya@nexusflow.io", activeTasks: 5, completedTasks: 48, workload: 51, presence: "away" },
+  { id: "u4", name: "Sneha", role: "QA Engineer", initials: "S", color: "var(--success)", email: "sneha@nexusflow.io", activeTasks: 7, completedTasks: 39, workload: 66, presence: "online" },
+  { id: "u5", name: "Rahul", role: "Backend Developer", initials: "R", color: "var(--warning)", email: "rahul@nexusflow.io", activeTasks: 9, completedTasks: 55, workload: 84, presence: "offline" },
+  { id: "u6", name: "Arjun", role: "AI Engineer", initials: "A", color: "var(--violet)", email: "arjun@nexusflow.io", activeTasks: 6, completedTasks: 44, workload: 72, presence: "online" },
+  { id: "u7", name: "Rohan", role: "Project Coordinator", initials: "R", color: "var(--cyan)", email: "rohan@nexusflow.io", activeTasks: 4, completedTasks: 31, workload: 45, presence: "away" },
 ];
+
 
 export const projects: Project[] = [
   { id: "p1", name: "Mobile App", description: "Cross-platform companion app with offline sync and push workflows.", progress: 72, status: "on-track", tasksDone: 36, tasksTotal: 50, due: "Jun 14", memberIds: ["u1", "u3", "u4"], health: 84 },
