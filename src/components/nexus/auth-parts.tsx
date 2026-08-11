@@ -211,10 +211,10 @@ export function PrimaryButton({
   return (
     <motion.button
       type="submit"
-      disabled={disabled}
-      whileHover={disabled ? undefined : { y: -1, filter: "brightness(1.12)" }}
-      whileTap={disabled ? undefined : { scale: 0.99 }}
-      transition={{ duration: 0.15 }}
+      disabled={disabled ?? false}
+      whileHover={disabled ? {} : { y: -1, filter: "brightness(1.12)" }}
+      whileTap={disabled ? {} : { scale: 0.99 }}
+
       className={primaryClass}
       style={{ background: "var(--gradient-ai)" }}
     >
