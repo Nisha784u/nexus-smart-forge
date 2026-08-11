@@ -10,7 +10,7 @@ import {
   SectionTitle,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { members } from "@/lib/nexus-data";
+import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/settings")({

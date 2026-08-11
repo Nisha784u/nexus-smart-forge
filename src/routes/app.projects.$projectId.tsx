@@ -13,7 +13,7 @@ import {
   StatusPill,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { activity, projectById, projects } from "@/lib/nexus-data";
+
 import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
@@ -49,7 +49,7 @@ const milestones = [
 
 function ProjectDetails() {
   const { project } = Route.useLoaderData();
-  const { tasks } = useNexus();
+  const { tasks, projects, activity } = useNexus();
   const [tab, setTab] = useState<(typeof tabs)[number]>("Overview");
   const projectTasks = tasks.filter((t) => t.projectId === project.id);
 

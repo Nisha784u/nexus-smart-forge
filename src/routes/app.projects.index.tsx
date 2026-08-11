@@ -11,7 +11,7 @@ import {
   fadeUp,
 } from "@/components/nexus/ui-bits";
 import { NexusOrb } from "@/components/nexus/nexus-orb";
-import { projects } from "@/lib/nexus-data";
+import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/projects/")({

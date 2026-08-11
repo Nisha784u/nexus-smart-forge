@@ -23,7 +23,7 @@ import {
   StatusPill,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { activity, memberById, projects, taskTrend } from "@/lib/nexus-data";
+import { memberById } from "@/lib/nexus-data";
 import { useNexus } from "@/lib/nexus-store";
 
 export const Route = createFileRoute("/app/dashboard")({
@@ -46,7 +46,7 @@ const kpis = [
 ];
 
 function DashboardPage() {
-  const { tasks } = useNexus();
+  const { tasks, projects, activity, taskTrend } = useNexus();
   const myTasks = tasks.filter((t) => t.assigneeId === "u1").slice(0, 5);
 
   return (

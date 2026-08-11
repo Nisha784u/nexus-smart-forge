@@ -27,7 +27,7 @@ import {
   SectionTitle,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { projects, taskTrend } from "@/lib/nexus-data";
+import { useNexus } from "@/lib/nexus-store";
 
 export const Route = createFileRoute("/app/insights")({
   head: () => ({
@@ -41,11 +41,6 @@ export const Route = createFileRoute("/app/insights")({
   component: InsightsPage,
 });
 
-const forecast = taskTrend.map((d, i) => ({
-  week: d.week,
-  actual: d.completed,
-  predicted: Math.round(d.completed * (1 + i * 0.04) + 4),
-}));
 
 const radar = [
   { axis: "Velocity", score: 82 },

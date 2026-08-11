@@ -16,13 +16,13 @@ import {
   Columns3,
 } from "lucide-react";
 import { useNexus } from "@/lib/nexus-store";
-import { projects } from "@/lib/nexus-data";
+
 import { cn } from "@/lib/utils";
 
 type Item = { id: string; label: string; group: string; icon: typeof Search; to?: string; action?: () => void };
 
 export function CommandPalette() {
-  const { paletteOpen, setPaletteOpen, tasks, addTask } = useNexus();
+  const { paletteOpen, setPaletteOpen, tasks, projects, addTask } = useNexus();
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [index, setIndex] = useState(0);

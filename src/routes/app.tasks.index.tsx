@@ -14,7 +14,7 @@ import {
   StatusPill,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { projects, statusOrder, statusLabels, type Priority, type Status } from "@/lib/nexus-data";
+import { statusOrder, statusLabels, type Priority, type Status } from "@/lib/nexus-data";
 import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
@@ -58,7 +58,7 @@ function Select({
 }
 
 function TasksPage() {
-  const { tasks, toggleTaskDone } = useNexus();
+  const { tasks, projects, toggleTaskDone } = useNexus();
   const [q, setQ] = useState("");
   const [status, setStatus] = useState("all");
   const [priority, setPriority] = useState("all");

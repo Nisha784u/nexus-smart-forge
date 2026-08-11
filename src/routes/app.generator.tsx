@@ -11,7 +11,7 @@ import {
   SectionTitle,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { projects, type Priority } from "@/lib/nexus-data";
+import { type Priority } from "@/lib/nexus-data";
 import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
@@ -41,7 +41,7 @@ const generated: Generated[] = [
 const templates = ["Product launch", "Sprint plan", "Bug triage", "Design handoff", "Migration"];
 
 function GeneratorPage() {
-  const { addTask } = useNexus();
+  const { addTask, projects } = useNexus();
   const [goal, setGoal] = useState("");
   const [project, setProject] = useState(projects[0]!.id);
   const [phase, setPhase] = useState<"idle" | "loading" | "done">("idle");
