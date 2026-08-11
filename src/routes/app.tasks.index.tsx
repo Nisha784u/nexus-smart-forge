@@ -58,7 +58,7 @@ function Select({
 }
 
 function TasksPage() {
-  const { tasks, projects, toggleTaskDone } = useNexus();
+  const { tasks, projects, members, toggleTaskDone } = useNexus();
   const [q, setQ] = useState("");
   const [status, setStatus] = useState("all");
   const [priority, setPriority] = useState("all");
@@ -150,16 +150,7 @@ function TasksPage() {
               label="Assignee"
               value={assignee}
               onChange={setAssignee}
-              options={[
-                { value: "all", label: "Anyone" },
-                { value: "u1", label: "Nisha Rao" },
-                { value: "u2", label: "Priya Menon" },
-                { value: "u3", label: "Arjun Mehta" },
-                { value: "u4", label: "Kavya Iyer" },
-                { value: "u5", label: "Rohan Shah" },
-                { value: "u6", label: "Ishaan Verma" },
-                { value: "u7", label: "Riya Kapoor" },
-              ]}
+              options={[{ value: "all", label: "Anyone" }, ...members.map((m) => ({ value: m.id, label: m.name }))]}
             />
           </div>
           <SectionTitle title={`${filtered.length} tasks`} />

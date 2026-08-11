@@ -46,15 +46,15 @@ const kpis = [
 ];
 
 function DashboardPage() {
-  const { tasks, projects, activity, taskTrend } = useNexus();
-  const myTasks = tasks.filter((t) => t.assigneeId === "u1").slice(0, 5);
+  const { tasks, projects, activity, taskTrend, currentProfileId, currentMember } = useNexus();
+  const myTasks = tasks.filter((t) => t.assigneeId === currentProfileId).slice(0, 5);
 
   return (
     <PageShellMotion>
       <PageHeader
         title={
           <>
-            Good morning, Nisha <span className="ml-1">👋</span>
+            Good morning, {currentMember?.name ?? "there"} <span className="ml-1">👋</span>
           </>
         }
         subtitle="Here's what's happening across your workspace today."

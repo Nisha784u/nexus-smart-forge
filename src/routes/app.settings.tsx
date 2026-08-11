@@ -123,9 +123,9 @@ function SettingsPage() {
                     </button>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Full name" defaultValue="Nisha Rao" />
-                    <Field label="Email" defaultValue="nisha@nexusflow.io" />
-                    <Field label="Role" defaultValue="Product Manager" />
+                    <Field label="Name" defaultValue={currentMember?.name ?? ""} />
+                    <Field label="Email" defaultValue={currentMember?.email ?? ""} />
+                    <Field label="Role" defaultValue={currentMember?.role ?? ""} />
                     <Field label="Timezone" defaultValue="UTC+01:00" />
                   </div>
                 </div>
