@@ -14,19 +14,14 @@ import {
   fadeUp,
 } from "@/components/nexus/ui-bits";
 import { NexusOrb } from "@/components/nexus/nexus-orb";
-import { initialTasks, memberById, projectById } from "@/lib/nexus-data";
+import { memberById, projectById } from "@/lib/nexus-data";
 import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/tasks/$taskId")({
-  loader: ({ params }) => {
-    const exists = initialTasks.some((t) => t.id === params.taskId);
-    if (!exists) throw notFound();
-    return { taskId: params.taskId };
-  },
-  head: ({ loaderData }) => {
-    const task = initialTasks.find((t) => t.id === loaderData?.taskId);
-    const title = task?.title ?? "Task";
+  loader: ({ params }) => ({ taskId: params.taskId }),
+  head: () => {
+    const title = "Task";
     return {
       meta: [
         { title: `${title} — NexusFlow` },
@@ -53,16 +48,21 @@ const aiResults: Record<string, string[]> = {
 
 function TaskDetails() {
   const { taskId } = Route.useLoaderData();
-  const { tasks, toggleSubtask, setTaskStatus } = useNexus();
-  const task = tasks.find((t) => t.id === taskId) ?? tasks[0];
+  const { tasks, toggleSubtask, setTaskStatus, commentsFor, addComment, loading } = useNexus();
+  const task = tasks.find((t) => t.id === taskId);
   const [ai, setAi] = useState<{ label: string; items: string[] } | null>(null);
   const [comment, setComment] = useState("");
-  const [comments, setComments] = useState([
-    { who: "Priya Menon", text: "Can we ship the retry logic before the webhook work?", time: "1h" },
-    { who: "Arjun Mehta", text: "Sandbox keys are in the shared vault.", time: "3h" },
-  ]);
+  const comments = commentsFor(taskId);
 
-  if (!task) return null;
+  if (!task) {
+    return (
+      <PageShellMotion>
+        <motion.div variants={fadeUp} className="p-10 text-center text-sm text-muted-foreground">
+          {loading ? "Loading task…" : "This task is no longer available in your workspace."}
+        </motion.div>
+      </PageShellMotion>
+    );
+  }
   const project = projectById(task.projectId);
   const doneCount = task.subtasks.filter((s) => s.done).length;
   const pct = task.subtasks.length ? Math.round((doneCount / task.subtasks.length) * 100) : 0;
@@ -141,17 +141,20 @@ function TaskDetails() {
             <Panel>
               <SectionTitle title="Comments" />
               <div className="space-y-4 p-5">
-                {comments.map((c, i) => (
-                  <div key={i} className="flex gap-3">
+                {comments.length === 0 && (
+                  <p className="text-[12px] text-muted-foreground">No comments yet — start the conversation.</p>
+                )}
+                {comments.map((c) => (
+                  <div key={c.id} className="flex gap-3">
                     <span className="mt-0.5 flex size-7 items-center justify-center rounded-full bg-surface-2 text-[10px] font-semibold">
-                      {c.who.split(" ").map((w) => w[0]).join("")}
+                      {memberById(c.authorId).initials}
                     </span>
                     <div>
                       <p className="text-[12px]">
-                        <span className="font-medium">{c.who}</span>{" "}
-                        <span className="text-muted-foreground">· {c.time} ago</span>
+                        <span className="font-medium">{memberById(c.authorId).name}</span>{" "}
+                        <span className="text-muted-foreground">· {c.time}</span>
                       </p>
-                      <p className="mt-1 text-sm text-muted-foreground">{c.text}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">{c.body}</p>
                     </div>
                   </div>
                 ))}
@@ -159,7 +162,7 @@ function TaskDetails() {
                   onSubmit={(e) => {
                     e.preventDefault();
                     if (!comment.trim()) return;
-                    setComments((prev) => [...prev, { who: "Nisha Rao", text: comment.trim(), time: "now" }]);
+                    void addComment(task.id, comment.trim());
                     setComment("");
                   }}
                   className="flex gap-2"

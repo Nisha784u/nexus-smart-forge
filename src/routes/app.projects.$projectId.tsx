@@ -48,7 +48,17 @@ function ProjectDetails() {
   const { tasks, projects, activity, loading } = useNexus();
   const project = projects.find((p) => p.id === projectId);
   const [tab, setTab] = useState<(typeof tabs)[number]>("Overview");
-  const projectTasks = tasks.filter((t) => t.projectId === project.id);
+  const projectTasks = tasks.filter((t) => t.projectId === projectId);
+
+  if (!project) {
+    return (
+      <PageShellMotion>
+        <motion.div variants={fadeUp} className="p-10 text-center text-sm text-muted-foreground">
+          {loading ? "Loading project…" : "This project is no longer available in your workspace."}
+        </motion.div>
+      </PageShellMotion>
+    );
+  }
 
   return (
     <PageShellMotion>
