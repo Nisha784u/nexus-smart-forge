@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "motion/react";
 import {
   LayoutDashboard,
@@ -16,6 +16,7 @@ import {
   Wand2,
   LineChart,
   Menu,
+  LogOut,
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
