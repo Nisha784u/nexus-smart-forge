@@ -13,18 +13,14 @@ import {
   StatusPill,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { activity, projectById, projects } from "@/lib/nexus-data";
+
 import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/projects/$projectId")({
-  loader: ({ params }) => {
-    const project = projectById(params.projectId);
-    if (!project) throw notFound();
-    return { project };
-  },
-  head: ({ loaderData }) => {
-    const name = loaderData?.project.name ?? "Project";
+  loader: ({ params }) => ({ projectId: params.projectId }),
+  head: () => {
+    const name = "Project";
     return {
       meta: [
         { title: `${name} — NexusFlow` },
@@ -48,10 +44,21 @@ const milestones = [
 ];
 
 function ProjectDetails() {
-  const { project } = Route.useLoaderData();
-  const { tasks } = useNexus();
+  const { projectId } = Route.useLoaderData();
+  const { tasks, projects, activity, loading } = useNexus();
+  const project = projects.find((p) => p.id === projectId);
   const [tab, setTab] = useState<(typeof tabs)[number]>("Overview");
-  const projectTasks = tasks.filter((t) => t.projectId === project.id);
+  const projectTasks = tasks.filter((t) => t.projectId === projectId);
+
+  if (!project) {
+    return (
+      <PageShellMotion>
+        <motion.div variants={fadeUp} className="p-10 text-center text-sm text-muted-foreground">
+          {loading ? "Loading project…" : "This project is no longer available in your workspace."}
+        </motion.div>
+      </PageShellMotion>
+    );
+  }
 
   return (
     <PageShellMotion>

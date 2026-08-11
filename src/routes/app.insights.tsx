@@ -27,7 +27,7 @@ import {
   SectionTitle,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { projects, taskTrend } from "@/lib/nexus-data";
+import { useNexus } from "@/lib/nexus-store";
 
 export const Route = createFileRoute("/app/insights")({
   head: () => ({
@@ -41,11 +41,6 @@ export const Route = createFileRoute("/app/insights")({
   component: InsightsPage,
 });
 
-const forecast = taskTrend.map((d, i) => ({
-  week: d.week,
-  actual: d.completed,
-  predicted: Math.round(d.completed * (1 + i * 0.04) + 4),
-}));
 
 const radar = [
   { axis: "Velocity", score: 82 },
@@ -69,6 +64,12 @@ const kpis = [
 ];
 
 function InsightsPage() {
+  const { projects, taskTrend } = useNexus();
+  const forecast = taskTrend.map((d, i) => ({
+    week: d.week,
+    actual: d.completed,
+    predicted: Math.round(d.completed * (1 + i * 0.04) + 4),
+  }));
   return (
     <PageShellMotion>
       <PageHeader title="AI Insights" subtitle="Predictive analytics across every project in the workspace." />

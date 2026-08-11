@@ -9,7 +9,8 @@ import {
   PageShellMotion,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { calendarEvents, type CalendarEvent } from "@/lib/nexus-data";
+import { toIsoDate, type CalendarEvent } from "@/lib/nexus-data";
+import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/calendar")({
@@ -35,19 +36,21 @@ const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 function CalendarPage() {
   const [view, setView] = useState<"Month" | "Week" | "Day">("Month");
-  const [events, setEvents] = useState<CalendarEvent[]>(calendarEvents);
+  const { events, moveEvent, addEvent: createEvent, updateEvent, deleteEvent } = useNexus();
   const [dragId, setDragId] = useState<string | null>(null);
   const [selected, setSelected] = useState<CalendarEvent | null>(null);
 
   const days = Array.from({ length: 35 }, (_, i) => i - 2);
 
-  const move = (id: string, day: number) =>
-    setEvents((prev) => prev.map((e) => (e.id === id ? { ...e, day } : e)));
+  const dateForDay = (day: number) => {
+    const now = new Date();
+    return toIsoDate(new Date(now.getFullYear(), now.getMonth(), day));
+  };
+
+  const move = (id: string, day: number) => void moveEvent(id, dateForDay(day));
 
   const addEvent = (day: number) => {
-    const e: CalendarEvent = { id: "e" + Math.random().toString(36).slice(2, 7), title: "New event", day, kind: "event", time: "12:00" };
-    setEvents((prev) => [...prev, e]);
-    setSelected(e);
+    void createEvent({ title: "New event", date: dateForDay(day), kind: "event", time: "12:00" });
   };
 
   return (
@@ -208,7 +211,7 @@ function CalendarPage() {
                 onChange={(e) => {
                   const title = e.target.value;
                   setSelected({ ...selected, title });
-                  setEvents((prev) => prev.map((ev) => (ev.id === selected.id ? { ...ev, title } : ev)));
+                  void updateEvent(selected.id, { title });
                 }}
                 className="mt-4 h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm outline-none focus:border-[oklch(0.6_0.2_272_/_0.6)]"
               />
@@ -218,7 +221,7 @@ function CalendarPage() {
               <div className="mt-5 flex justify-end gap-2">
                 <button
                   onClick={() => {
-                    setEvents((prev) => prev.filter((ev) => ev.id !== selected.id));
+                    void deleteEvent(selected.id);
                     setSelected(null);
                   }}
                   className="rounded-lg border border-border px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground"

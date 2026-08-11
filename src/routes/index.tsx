@@ -1,6 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { AuthVisual, AuthPanel, Field, PrimaryButton } from "@/components/nexus/auth-parts";
+import { useEffect, useState } from "react";
+import { AuthVisual, AuthPanel, AuthMessage, Field, PrimaryButton } from "@/components/nexus/auth-parts";
+import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,6 +25,42 @@ export const Route = createFileRoute("/")({
 });
 
 function LoginPage() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    void supabase.auth.getSession().then(({ data }) => {
+      if (data.session) void navigate({ to: "/app/dashboard", replace: true });
+    });
+  }, [navigate]);
+
+  const signIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    setError(null);
+    const { error: err } = await supabase.auth.signInWithPassword({ email, password });
+    setBusy(false);
+    if (err) {
+      setError(err.message);
+      return;
+    }
+    void navigate({ to: "/app/dashboard", replace: true });
+  };
+
+  const signInWithGoogle = async () => {
+    setError(null);
+    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
+    if (result.error) {
+      setError(result.error.message);
+      return;
+    }
+    if (result.redirected) return;
+    void navigate({ to: "/app/dashboard", replace: true });
+  };
+
   return (
     <div className="flex min-h-screen">
       <AuthVisual />
@@ -37,8 +76,10 @@ function LoginPage() {
           </>
         }
       >
-        <Field label="Email address" type="email" placeholder="nisha@company.com" autoComplete="email" />
-        <Field label="Password" type="password" placeholder="••••••••" autoComplete="current-password" />
+        <form onSubmit={signIn} className="space-y-4">
+        <AuthMessage>{error}</AuthMessage>
+        <Field label="Email address" type="email" placeholder="nisha@company.com" autoComplete="email" value={email} onChange={setEmail} required />
+        <Field label="Password" type="password" placeholder="••••••••" autoComplete="current-password" value={password} onChange={setPassword} required />
         <div className="flex items-center justify-between text-xs">
           <label className="flex cursor-pointer items-center gap-2 text-muted-foreground">
             <input type="checkbox" className="size-3.5 accent-[oklch(0.6_0.2_272)]" defaultChecked />
@@ -48,11 +89,14 @@ function LoginPage() {
             Forgot password?
           </Link>
         </div>
-        <PrimaryButton to="/app/dashboard">Sign In</PrimaryButton>
+        <PrimaryButton disabled={busy}>{busy ? "Signing in…" : "Sign In"}</PrimaryButton>
+        </form>
         <div className="flex items-center gap-3 py-1 text-[11px] text-muted-foreground">
           <span className="h-px flex-1 bg-border" /> or continue with <span className="h-px flex-1 bg-border" />
         </div>
         <motion.button
+          type="button"
+          onClick={() => void signInWithGoogle()}
           whileHover={{ y: -1 }}
           whileTap={{ scale: 0.99 }}
           className="flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-border bg-surface text-sm font-medium transition-colors hover:border-[oklch(0.6_0.2_272_/_0.45)]"

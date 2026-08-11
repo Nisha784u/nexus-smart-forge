@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AuthVisual, AuthPanel, Field, PrimaryButton } from "@/components/nexus/auth-parts";
+import { useState } from "react";
+import { AuthVisual, AuthPanel, AuthMessage, Field, PrimaryButton } from "@/components/nexus/auth-parts";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/forgot-password")({
   head: () => ({
@@ -14,6 +16,26 @@ export const Route = createFileRoute("/forgot-password")({
 });
 
 function ForgotPage() {
+  const [email, setEmail] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [sent, setSent] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    setError(null);
+    const { error: err } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    setBusy(false);
+    if (err) {
+      setError(err.message);
+      return;
+    }
+    setSent(true);
+  };
+
   return (
     <div className="flex min-h-screen">
       <AuthVisual />
@@ -26,8 +48,12 @@ function ForgotPage() {
           </Link>
         }
       >
-        <Field label="Email address" type="email" placeholder="nisha@company.com" autoComplete="email" />
-        <PrimaryButton to="/">Send reset link</PrimaryButton>
+        <form onSubmit={submit} className="space-y-4">
+          <AuthMessage>{error}</AuthMessage>
+          {sent && <AuthMessage tone="success">If that address has an account, a reset link is on its way.</AuthMessage>}
+          <Field label="Email address" type="email" placeholder="nisha@company.com" autoComplete="email" value={email} onChange={setEmail} required />
+          <PrimaryButton disabled={busy}>{busy ? "Sending…" : "Send reset link"}</PrimaryButton>
+        </form>
       </AuthPanel>
     </div>
   );

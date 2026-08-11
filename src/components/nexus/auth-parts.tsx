@@ -154,11 +154,17 @@ export function Field({
   type = "text",
   placeholder,
   autoComplete,
+  value,
+  onChange,
+  required,
 }: {
   label: string;
   type?: string;
   placeholder: string;
   autoComplete?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  required?: boolean;
 }) {
   return (
     <label className="block">
@@ -167,24 +173,69 @@ export function Field({
         type={type}
         placeholder={placeholder}
         autoComplete={autoComplete}
+        required={required}
+        {...(onChange ? { value: value ?? "", onChange: (e) => onChange(e.target.value) } : {})}
         className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm outline-none transition-all placeholder:text-muted-foreground/70 focus:border-[oklch(0.6_0.2_272_/_0.6)] focus:shadow-[0_0_0_3px_oklch(0.6_0.2_272_/_0.15)]"
       />
     </label>
   );
 }
 
-export function PrimaryButton({ children, to }: { children: React.ReactNode; to: string }) {
+const primaryClass =
+  "flex h-10 w-full items-center justify-center rounded-lg text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-12px_oklch(0.6_0.2_272)] disabled:opacity-60";
+
+export function PrimaryButton({
+  children,
+  to,
+  disabled,
+}: {
+  children: React.ReactNode;
+  to?: string;
+  disabled?: boolean;
+}) {
+  if (to) {
+    return (
+      <Link to={to} className="block">
+        <motion.span
+          whileHover={{ y: -1, filter: "brightness(1.12)" }}
+          whileTap={{ scale: 0.99 }}
+          transition={{ duration: 0.15 }}
+          className={primaryClass}
+          style={{ background: "var(--gradient-ai)" }}
+        >
+          {children}
+        </motion.span>
+      </Link>
+    );
+  }
   return (
-    <Link to={to} className="block">
-      <motion.span
-        whileHover={{ y: -1, filter: "brightness(1.12)" }}
-        whileTap={{ scale: 0.99 }}
-        transition={{ duration: 0.15 }}
-        className="flex h-10 w-full items-center justify-center rounded-lg text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-12px_oklch(0.6_0.2_272)]"
-        style={{ background: "var(--gradient-ai)" }}
-      >
-        {children}
-      </motion.span>
-    </Link>
+    <motion.button
+      type="submit"
+      disabled={disabled ?? false}
+      whileHover={disabled ? {} : { y: -1, filter: "brightness(1.12)" }}
+      whileTap={disabled ? {} : { scale: 0.99 }}
+
+      className={primaryClass}
+      style={{ background: "var(--gradient-ai)" }}
+    >
+      {children}
+    </motion.button>
   );
 }
+
+export function AuthMessage({ tone = "error", children }: { tone?: "error" | "success"; children: React.ReactNode }) {
+  if (!children) return null;
+  return (
+    <p
+      role={tone === "error" ? "alert" : "status"}
+      className={
+        tone === "error"
+          ? "rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-[12px] text-destructive-foreground"
+          : "rounded-lg border border-[oklch(0.6_0.2_272_/_0.4)] bg-surface px-3 py-2 text-[12px] text-foreground/80"
+      }
+    >
+      {children}
+    </p>
+  );
+}
+

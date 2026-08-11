@@ -10,7 +10,7 @@ import {
   PriorityPill,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { projects, statusLabels, statusOrder, type Status } from "@/lib/nexus-data";
+import { statusLabels, statusOrder, type Status } from "@/lib/nexus-data";
 import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/app/board")({
 });
 
 function BoardPage() {
-  const { tasks, setTaskStatus, addTask } = useNexus();
+  const { tasks, projects, setTaskStatus, addTask } = useNexus();
   const [q, setQ] = useState("");
   const [project, setProject] = useState("all");
   const [dragId, setDragId] = useState<string | null>(null);

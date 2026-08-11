@@ -10,7 +10,7 @@ import {
   SectionTitle,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { members } from "@/lib/nexus-data";
+import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/settings")({
@@ -69,6 +69,7 @@ function Row({ title, desc, children }: { title: string; desc: string; children:
 }
 
 function SettingsPage() {
+  const { members, currentMember, workspaceName } = useNexus();
   const [tab, setTab] = useState<Tab>("Profile");
   const [toggles, setToggles] = useState<Record<string, boolean>>({
     email: true,
@@ -113,18 +114,18 @@ function SettingsPage() {
                   <div className="flex items-center gap-4">
                     <span
                       className="flex size-14 items-center justify-center rounded-full text-base font-semibold text-primary-foreground"
-                      style={{ background: members[0]!.color }}
+                      style={{ background: currentMember?.color ?? "var(--electric)" }}
                     >
-                      N
+                      {currentMember?.initials ?? "?"}
                     </span>
                     <button className="rounded-lg border border-border/70 px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground">
                       Change avatar
                     </button>
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Full name" defaultValue="Nisha Rao" />
-                    <Field label="Email" defaultValue="nisha@nexusflow.io" />
-                    <Field label="Role" defaultValue="Product Manager" />
+                    <Field label="Name" defaultValue={currentMember?.name ?? ""} />
+                    <Field label="Email" defaultValue={currentMember?.email ?? ""} />
+                    <Field label="Role" defaultValue={currentMember?.role ?? ""} />
                     <Field label="Timezone" defaultValue="UTC+01:00" />
                   </div>
                 </div>
@@ -133,7 +134,7 @@ function SettingsPage() {
               {tab === "Workspace" && (
                 <div className="space-y-4">
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Workspace name" defaultValue="Acme Product" />
+                    <Field label="Workspace name" defaultValue={workspaceName} />
                     <Field label="Workspace URL" defaultValue="acme.nexusflow.io" />
                   </div>
                   <div>

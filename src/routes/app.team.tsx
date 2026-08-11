@@ -21,7 +21,8 @@ import {
   SectionTitle,
   fadeUp,
 } from "@/components/nexus/ui-bits";
-import { activity, members } from "@/lib/nexus-data";
+import { memberById } from "@/lib/nexus-data";
+import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/team")({
@@ -49,8 +50,9 @@ function loadColor(w: number) {
 }
 
 function TeamPage() {
-  const [selected, setSelected] = useState(members[0]!.id);
-  const member = members.find((m) => m.id === selected)!;
+  const { members, activity } = useNexus();
+  const [selected, setSelected] = useState<string | null>(null);
+  const member = members.find((m) => m.id === selected) ?? members[0] ?? memberById(null);
   const chartData = members.map((m) => ({ name: m.initials, workload: m.workload }));
 
   return (
