@@ -69,6 +69,7 @@ function Row({ title, desc, children }: { title: string; desc: string; children:
 }
 
 function SettingsPage() {
+  const { members, currentMember } = useNexus();
   const [tab, setTab] = useState<Tab>("Profile");
   const [toggles, setToggles] = useState<Record<string, boolean>>({
     email: true,
@@ -113,9 +114,9 @@ function SettingsPage() {
                   <div className="flex items-center gap-4">
                     <span
                       className="flex size-14 items-center justify-center rounded-full text-base font-semibold text-primary-foreground"
-                      style={{ background: members[0]!.color }}
+                      style={{ background: currentMember?.color ?? "var(--electric)" }}
                     >
-                      N
+                      {currentMember?.initials ?? "?"}
                     </span>
                     <button className="rounded-lg border border-border/70 px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground">
                       Change avatar

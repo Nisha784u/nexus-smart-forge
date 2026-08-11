@@ -36,7 +36,7 @@ const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 function CalendarPage() {
   const [view, setView] = useState<"Month" | "Week" | "Day">("Month");
-  const { events, moveEvent, addEvent: createEvent, loading } = useNexus();
+  const { events, moveEvent, addEvent: createEvent, updateEvent, deleteEvent } = useNexus();
   const [dragId, setDragId] = useState<string | null>(null);
   const [selected, setSelected] = useState<CalendarEvent | null>(null);
 
@@ -211,7 +211,7 @@ function CalendarPage() {
                 onChange={(e) => {
                   const title = e.target.value;
                   setSelected({ ...selected, title });
-                  setEvents((prev) => prev.map((ev) => (ev.id === selected.id ? { ...ev, title } : ev)));
+                  void updateEvent(selected.id, { title });
                 }}
                 className="mt-4 h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm outline-none focus:border-[oklch(0.6_0.2_272_/_0.6)]"
               />
@@ -221,7 +221,7 @@ function CalendarPage() {
               <div className="mt-5 flex justify-end gap-2">
                 <button
                   onClick={() => {
-                    setEvents((prev) => prev.filter((ev) => ev.id !== selected.id));
+                    void deleteEvent(selected.id);
                     setSelected(null);
                   }}
                   className="rounded-lg border border-border px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground"

@@ -18,13 +18,9 @@ import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/projects/$projectId")({
-  loader: ({ params }) => {
-    const project = projectById(params.projectId);
-    if (!project) throw notFound();
-    return { project };
-  },
-  head: ({ loaderData }) => {
-    const name = loaderData?.project.name ?? "Project";
+  loader: ({ params }) => ({ projectId: params.projectId }),
+  head: () => {
+    const name = "Project";
     return {
       meta: [
         { title: `${name} — NexusFlow` },
@@ -48,8 +44,9 @@ const milestones = [
 ];
 
 function ProjectDetails() {
-  const { project } = Route.useLoaderData();
-  const { tasks, projects, activity } = useNexus();
+  const { projectId } = Route.useLoaderData();
+  const { tasks, projects, activity, loading } = useNexus();
+  const project = projects.find((p) => p.id === projectId);
   const [tab, setTab] = useState<(typeof tabs)[number]>("Overview");
   const projectTasks = tasks.filter((t) => t.projectId === project.id);
 

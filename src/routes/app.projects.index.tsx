@@ -34,6 +34,7 @@ const statusCopy = {
 } as const;
 
 function ProjectsPage() {
+  const { projects, loading } = useNexus();
   const [q, setQ] = useState("");
   const [sort, setSort] = useState("progress");
   const [view, setView] = useState<"grid" | "list">("grid");
@@ -43,7 +44,7 @@ function ProjectsPage() {
     return [...f].sort((a, b) =>
       sort === "progress" ? b.progress - a.progress : sort === "name" ? a.name.localeCompare(b.name) : b.health - a.health,
     );
-  }, [q, sort]);
+  }, [projects, q, sort]);
 
   return (
     <PageShellMotion>

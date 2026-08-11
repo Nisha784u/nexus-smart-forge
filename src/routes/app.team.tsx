@@ -21,6 +21,7 @@ import {
   SectionTitle,
   fadeUp,
 } from "@/components/nexus/ui-bits";
+import { memberById } from "@/lib/nexus-data";
 import { useNexus } from "@/lib/nexus-store";
 import { cn } from "@/lib/utils";
 
@@ -51,7 +52,7 @@ function loadColor(w: number) {
 function TeamPage() {
   const { members, activity } = useNexus();
   const [selected, setSelected] = useState<string | null>(null);
-  const member = members.find((m) => m.id === selected) ?? members[0];
+  const member = members.find((m) => m.id === selected) ?? members[0] ?? memberById(null);
   const chartData = members.map((m) => ({ name: m.initials, workload: m.workload }));
 
   return (

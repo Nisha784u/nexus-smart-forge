@@ -64,6 +64,12 @@ const kpis = [
 ];
 
 function InsightsPage() {
+  const { projects, taskTrend } = useNexus();
+  const forecast = taskTrend.map((d, i) => ({
+    week: d.week,
+    actual: d.completed,
+    predicted: Math.round(d.completed * (1 + i * 0.04) + 4),
+  }));
   return (
     <PageShellMotion>
       <PageHeader title="AI Insights" subtitle="Predictive analytics across every project in the workspace." />

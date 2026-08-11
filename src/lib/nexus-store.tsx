@@ -90,6 +90,7 @@ type Ctx = {
 
   addEvent: (input: { title: string; date: string; kind?: CalendarEvent["kind"]; time?: string }) => Promise<void>;
   moveEvent: (id: string, date: string) => Promise<void>;
+  updateEvent: (id: string, patch: { title?: string; time?: string }) => Promise<void>;
   deleteEvent: (id: string) => Promise<void>;
 
   markAllRead: () => Promise<void>;
@@ -391,6 +392,21 @@ export function NexusProvider({ children }: { children: ReactNode }) {
     [guard],
   );
 
+  const updateEvent = useCallback<Ctx["updateEvent"]>(
+    (id, patch) =>
+      guard(async () => {
+        const { error: e } = await supabase
+          .from("calendar_events")
+          .update({
+            ...(patch.title !== undefined ? { title: patch.title } : {}),
+            ...(patch.time !== undefined ? { time_label: patch.time } : {}),
+          })
+          .eq("id", id);
+        if (e) throw e;
+      }),
+    [guard],
+  );
+
   const deleteEvent = useCallback(
     (id: string) =>
       guard(async () => {
@@ -467,6 +483,7 @@ export function NexusProvider({ children }: { children: ReactNode }) {
       toggleProjectMember,
       addEvent,
       moveEvent,
+      updateEvent,
       deleteEvent,
       markAllRead,
       toggleRead,
@@ -495,6 +512,7 @@ export function NexusProvider({ children }: { children: ReactNode }) {
       toggleProjectMember,
       addEvent,
       moveEvent,
+      updateEvent,
       deleteEvent,
       markAllRead,
       toggleRead,
