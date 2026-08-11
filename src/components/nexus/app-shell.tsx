@@ -20,6 +20,7 @@ import {
 import { useEffect, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { useNexus } from "@/lib/nexus-store";
+import { supabase } from "@/integrations/supabase/client";
 import { NexusOrb } from "./nexus-orb";
 import { CommandPalette } from "./command-palette";
 
@@ -67,7 +68,13 @@ function NavItem({ to, label, icon: Icon, active }: { to: string; label: string;
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const { notifications, setPaletteOpen } = useNexus();
+  const { notifications, setPaletteOpen, currentMember, workspaceName } = useNexus();
+  const navigate = useNavigate();
+
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    void navigate({ to: "/", replace: true });
+  };
   const unread = notifications.filter((n) => n.unread).length;
   const [mobileNav, setMobileNav] = useState(false);
 
@@ -206,10 +213,18 @@ export function AppShell({ children }: { children: ReactNode }) {
             </Link>
             <Link to="/app/settings" className="flex items-center gap-2 rounded-lg border border-border/70 bg-surface p-1 pr-2.5">
               <span className="flex size-6 items-center justify-center rounded-md bg-[var(--gradient-ai)] text-[10px] font-bold text-background">
-                N
+                {currentMember?.initials ?? "?"}
               </span>
-              <span className="hidden text-xs font-medium sm:block">Nisha Rao</span>
+              <span className="hidden text-xs font-medium sm:block">{currentMember?.name ?? "Account"}</span>
             </Link>
+            <button
+              onClick={() => void signOut()}
+              title="Sign out"
+              aria-label="Sign out"
+              className="rounded-lg border border-border/70 bg-surface p-2 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <LogOut className="size-4" />
+            </button>
           </div>
         </header>
         <main className="grid-noise min-w-0 flex-1">{children}</main>
