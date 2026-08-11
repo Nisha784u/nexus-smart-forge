@@ -69,7 +69,7 @@ function Row({ title, desc, children }: { title: string; desc: string; children:
 }
 
 function SettingsPage() {
-  const { members, currentMember } = useNexus();
+  const { members, currentMember, workspaceName } = useNexus();
   const [tab, setTab] = useState<Tab>("Profile");
   const [toggles, setToggles] = useState<Record<string, boolean>>({
     email: true,
@@ -134,7 +134,7 @@ function SettingsPage() {
               {tab === "Workspace" && (
                 <div className="space-y-4">
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Workspace name" defaultValue="Acme Product" />
+                    <Field label="Workspace name" defaultValue={workspaceName} />
                     <Field label="Workspace URL" defaultValue="acme.nexusflow.io" />
                   </div>
                   <div>

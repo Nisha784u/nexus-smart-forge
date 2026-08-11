@@ -69,7 +69,7 @@ function NavItem({ to, label, icon: Icon, active }: { to: string; label: string;
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const { notifications, setPaletteOpen, currentMember, workspaceName } = useNexus();
+  const { notifications, setPaletteOpen, currentMember, loading, error } = useNexus();
   const navigate = useNavigate();
 
   const signOut = async () => {
@@ -228,7 +228,20 @@ export function AppShell({ children }: { children: ReactNode }) {
             </button>
           </div>
         </header>
-        <main className="grid-noise min-w-0 flex-1">{children}</main>
+        <main className="grid-noise min-w-0 flex-1">
+          {error && (
+            <div role="alert" className="border-b border-destructive/40 bg-destructive/10 px-6 py-2 text-[12px] text-foreground/80">
+              {error}
+            </div>
+          )}
+          {loading ? (
+            <div className="flex h-[60vh] items-center justify-center text-sm text-muted-foreground">
+              Loading your workspace…
+            </div>
+          ) : (
+            children
+          )}
+        </main>
       </div>
       <CommandPalette />
     </div>
