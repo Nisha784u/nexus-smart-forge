@@ -60,14 +60,29 @@ function SignupPage() {
           </>
         }
       >
-        <form onSubmit={submit} className="space-y-4">
-          <AuthMessage>{error}</AuthMessage>
-          {sent && <AuthMessage tone="success">Check your inbox to confirm your email, then sign in.</AuthMessage>}
-          <Field label="Name" placeholder="Nisha" autoComplete="name" value={name} onChange={setName} required />
-          <Field label="Work email" type="email" placeholder="nisha@company.com" autoComplete="email" value={email} onChange={setEmail} required />
-          <Field label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" value={password} onChange={setPassword} required />
-          <PrimaryButton disabled={busy}>{busy ? "Creating account…" : "Create account"}</PrimaryButton>
-        </form>
+        {sent ? (
+          <div className="space-y-4">
+            <AuthMessage tone="success">
+              Confirmation email sent to {email}. Confirm your email address, then sign in to enter your workspace.
+              Signing up does not sign you in automatically.
+            </AuthMessage>
+            <Link
+              to="/"
+              className="flex h-10 w-full items-center justify-center rounded-lg border border-border bg-surface text-sm font-medium transition-colors hover:border-[oklch(0.6_0.2_272_/_0.45)]"
+            >
+              Go to sign in
+            </Link>
+          </div>
+        ) : (
+          <form onSubmit={submit} className="space-y-4">
+            <AuthMessage>{error}</AuthMessage>
+            <Field label="Name" placeholder="Nisha" autoComplete="name" value={name} onChange={setName} required />
+            <Field label="Work email" type="email" placeholder="nisha@company.com" autoComplete="email" value={email} onChange={setEmail} required />
+            <Field label="Password" type="password" placeholder="At least 8 characters" autoComplete="new-password" value={password} onChange={setPassword} required />
+            <PrimaryButton disabled={busy}>{busy ? "Creating account…" : "Create account"}</PrimaryButton>
+          </form>
+        )}
+
         <p className="text-[11px] leading-relaxed text-muted-foreground">
           By continuing you agree to the NexusFlow Terms of Service and Privacy Policy.
         </p>
