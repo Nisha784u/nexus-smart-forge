@@ -140,9 +140,8 @@ export function AuthPanel({
         </div>
         <h2 className="font-display text-2xl font-semibold tracking-tight">{title}</h2>
         <p className="mt-1.5 text-sm text-muted-foreground">{subtitle}</p>
-        <form className="mt-7 space-y-4" onSubmit={(event) => event.preventDefault()}>
-          {children}
-        </form>
+        <div className="mt-7 space-y-4">{children}</div>
+
         {footer && <div className="mt-7 text-center text-sm text-muted-foreground">{footer}</div>}
       </motion.div>
     </div>
