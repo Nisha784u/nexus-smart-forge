@@ -1,1 +1,0 @@
-- [Frontend-only boundary](frontend-only-boundary.md) — NexusFlow currently has no shared backend or real authentication; local persistence must not be presented as multi-user production storage.
