@@ -20,7 +20,7 @@ backed by a real database and real authentication.
 ## 🛠️ Tech Stack
 
 React · TypeScript · TanStack Start / Router · Tailwind CSS · Motion · Recharts
-Lovable Cloud (Supabase) · PostgreSQL with Row Level Security · Supabase Auth
+Supabase (PostgreSQL with Row Level Security, Supabase Auth)
 
 ## 📸 Screenshots
 
@@ -59,12 +59,26 @@ public/
 
 ```bash
 npm install
+cp .env.example .env   # fill in your own values
 npm run dev
 ```
 
-The backend connection is configured through environment variables in `.env`
-(`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_SUPABASE_PROJECT_ID`).
+Environment variables are read from `.env` (see `.env.example` for the required
+names). `.env` is git-ignored and must never be committed — only publishable
+client keys belong in `VITE_*` variables; server-side secrets are provided as
+runtime environment variables.
+
+## ☁️ Deployment
+
+```bash
+npm run build   # production build
+npm run preview # serve the production build locally
+```
+
+Deploy the build output to any Node/edge host, providing the same environment
+variables from `.env.example` in the hosting platform's settings.
 
 ## 📌 Status
 
 NexusFlow is an actively developed full-stack SaaS project.
+
