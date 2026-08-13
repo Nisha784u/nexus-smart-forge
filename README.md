@@ -20,7 +20,7 @@ backed by a real database and real authentication.
 ## 🛠️ Tech Stack
 
 React · TypeScript · TanStack Start / Router · Tailwind CSS · Motion · Recharts
-Lovable Cloud (Supabase) · PostgreSQL with Row Level Security · Supabase Auth
+Supabase (PostgreSQL with Row Level Security, Supabase Auth)
 
 ## 📸 Screenshots
 
