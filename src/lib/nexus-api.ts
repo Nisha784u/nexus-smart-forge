@@ -33,13 +33,17 @@ function initialsOf(name: string) {
 
 /** Resolves (and on first sign-in, seeds) the workspace for the current user. */
 export async function bootstrapWorkspace(): Promise<string> {
-  const { data, error } = await supabase.rpc("bootstrap_workspace");
-  if (error) throw error;
-  if (!data) throw new Error("No workspace available for this account.");
-  return data as string;
+  // PREVIEW-ONLY: return a mock workspace id so the UI can be inspected
+  // without a database. Revert this block to restore real behavior.
+  return "mock-workspace";
 }
 
 export async function loadWorkspace(workspaceId: string): Promise<WorkspaceSnapshot> {
+  // PREVIEW-ONLY: serve mock data for visual inspection. Revert to restore.
+  const { mockSnapshot } = await import("./nexus-mock");
+  return mockSnapshot;
+
+  // eslint-disable-next-line no-unreachable
   const { data: auth } = await supabase.auth.getUser();
   const userId = auth.user?.id ?? null;
 
