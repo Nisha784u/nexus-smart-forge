@@ -4,6 +4,8 @@ NexusFlow is a modern, AI-powered project and workspace management SaaS app for 
 It brings projects, tasks, boards, calendar, team workload and AI assistance into one premium dark workspace,
 backed by a real database and real authentication.
 
+Live Demo:https://nexus-smart-forge.vercel.app/
+
 ## ✨ Features
 
 - 📊 Dashboard & analytics
